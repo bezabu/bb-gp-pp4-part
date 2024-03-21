@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 
-    <h1>Defect List</h1>
+    <h2>Defect List</h2>
         {% for defect in object_list %}
-    <h2>{{defect.title}}</h2>
+    <h3>{{defect.title}}</h3>
     <p>Reporter: {{defect.reporter}}</p>
     {% endfor %}
 
