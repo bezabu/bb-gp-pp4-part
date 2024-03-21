@@ -27,7 +27,7 @@ class Defect(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="defects")
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="reporter")
+        User, on_delete=models.CASCADE, related_name="defects")
     body = models.TextField()
     #image_url = models.SlugField()
     reported_on = models.DateTimeField(auto_now_add=True)
