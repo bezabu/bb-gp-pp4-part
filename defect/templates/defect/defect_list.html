@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defect List</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
     <h1>Defect List</h1>
         {% for defect in object_list %}
     <h2>{{defect.title}}</h2>
     <p>Reporter: {{defect.reporter}}</p>
     {% endfor %}
-</body>
-</html>
+
+
+{% endblock %}
