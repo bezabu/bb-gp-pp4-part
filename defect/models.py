@@ -8,7 +8,6 @@ class Category(models.Model):
     """
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
-    fa_string = models.CharField(max_length=100)
+    fa_string = models.SlugField(max_length=100)
     colour = models.CharField(max_length=7)
 
-    
