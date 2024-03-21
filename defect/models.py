@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+
+STATUS = ((0, "Open"), (1, "Resolved"), (2, "Sticky"))
 
 class Category(models.Model):
     """
@@ -11,7 +14,7 @@ class Category(models.Model):
     fa_string = models.SlugField(max_length=100)
     colour = models.CharField(max_length=7)
 
-STATUS = ((0, "Open"), (1, "Resolved"), (2, "Sticky"))
+
 
 class Defect(models.Model):
     """
@@ -24,7 +27,10 @@ class Defect(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="reporter")
     body = models.TextField()
-    image_url = models.SlugField()
+    #image_url = models.SlugField()
     reported_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     reoccurance = models.IntegerField()
+    updates_count = models.IntegerField()
+    latest_update = models.DateTimeField()
+
