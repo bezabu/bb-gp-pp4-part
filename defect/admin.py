@@ -12,4 +12,4 @@ class DefectAdmin(SummernoteModelAdmin):
 
 # Register your models here.
 admin.site.register(Category)
-#admin.site.register(Defect)
+#admin.site.register()

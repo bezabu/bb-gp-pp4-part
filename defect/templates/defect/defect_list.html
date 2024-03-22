@@ -1,12 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
+<div class="container-lg">
+    <div class="row">
+        <div class="col">
     <h2>Defect List</h2>
-        {% for defect in object_list %}
-    <h3>{{defect.title}}</h3>
-    <p>Reporter: {{defect.reporter}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        {% for defect in defects %}
+        <div class="row">
+            
+            {{ defect.category.fa_string }}
+            <div class="col"><p><i class="fa-solid {{defect.category.fa_string}}"></i></p></div> 
+            <div class="col"><p>{{defect.title}}</p></div>   
+            <div class="col"><p>{{defect.reported_on}}</p></div>
+            <div class="col"><p>{{defect.author}}</p></div>
+        </div>
     {% endfor %}
-
-
+</div>
+    </div>
+</div>
 {% endblock %}
