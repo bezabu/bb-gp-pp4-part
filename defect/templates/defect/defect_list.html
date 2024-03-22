@@ -4,22 +4,22 @@
 <div class="container-lg">
     <div class="row">
         <div class="col">
-    <h2>Defect List</h2>
+            <h2>Defect List</h2>
         </div>
     </div>
     <div class="row">
         <div class="col">
-        {% for defect in defects %}
-        <div class="row">
+            {% for defect in defects %}
+            <div class="row">
             
-            {{ defect.category.fa_string }}
-            <div class="col"><p><i class="fa-solid {{defect.category.fa_string}}"></i></p></div> 
-            <div class="col"><p>{{defect.title}}</p></div>   
-            <div class="col"><p>{{defect.reported_on}}</p></div>
-            <div class="col"><p>{{defect.author}}</p></div>
+                <div class="col"><p><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></p></div>
+                <div class="col"><p>{{defect.updates_count}}</p></div>
+                <div class="col"><p>{{defect.title}}</p></div>   
+                <div class="col"><p>{{defect.reported_on}}</p></div>
+                <div class="col"><p>{{defect.author}}</p></div>
+            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-</div>
     </div>
 </div>
 {% endblock %}
