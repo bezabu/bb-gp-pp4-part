@@ -9,3 +9,17 @@ class Update(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     resolution = models.IntegerField()
+
+
+class Update(models.Model):
+    """
+    Stores a single update to a defect, related to :model:'Defect' and :model:'auth.User'
+    """
+    update_id = models.IntegerField(primary_key=True)
+    defect = models.ForeignKey(
+        Defect, on_delete=models.CASCADE, related_name="updates")
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="updates")
+    created_on = models.DateTimeField(auto_now_add=True)
+    body = models.TextField()
+    resolution = models.IntegerField(choices=STATUS, default=0)

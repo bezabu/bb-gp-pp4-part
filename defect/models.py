@@ -24,6 +24,7 @@ class Defect(models.Model):
     """
     defect_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, unique=True)
+    excerpt = models.CharField(max_length=50, blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="defects")
     author = models.ForeignKey(
@@ -41,3 +42,17 @@ class Defect(models.Model):
 
     def __str__(self):
         return f"Defect: {self.title} ({self.category})"
+
+class Update(models.Model):
+    """
+    Stores a single update to a defect, related to :model:'Defect' and :model:'auth.User'
+    """
+    update_id = models.IntegerField(primary_key=True)
+    defect = models.ForeignKey(
+        Defect, on_delete=models.CASCADE, related_name="updates")
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="updates")
+    created_on = models.DateTimeField(auto_now_add=True)
+    body = models.TextField()
+    #image_url = models.SlugField()
+    resolution = models.IntegerField(choices=STATUS, default=0)
