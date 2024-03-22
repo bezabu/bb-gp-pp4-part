@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <h2>Dashboard</h2>
+        {% for defect in object_list %}
+    <h3>{{defect.title}}</h3>
+    <p>Reporter: {{defect.reporter}}</p>
+    {% endfor %}
+
+
+{% endblock %}
