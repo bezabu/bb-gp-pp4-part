@@ -1,7 +1,45 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
-
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-1">
+                <h2><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></h2>
+            </div>
+            <div class="col-11">
+                <h2>{{ defect.title }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"> 
+                {% autoescape off %}
+                {{ defects.body }}
+                {% endautoescape %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"> 
+                <!-- images go here -->
+            </div>
+        </div>
+        {% for update in updates %}
+        <div class="row">
+            <div class="col">
+                {{ update.created_on }}
+            </div>
+            <div class="col">
+                {{ update.author }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ update.body }}
+            </div>
+        </div>
+        <div class="row">
+            <!-- images go here -->
+        </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

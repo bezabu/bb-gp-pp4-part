@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Defect
+from .models import Category, Defect, Update
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Defect)
@@ -12,4 +12,4 @@ class DefectAdmin(SummernoteModelAdmin):
 
 # Register your models here.
 admin.site.register(Category)
-#admin.site.register()
+admin.site.register(Update)
