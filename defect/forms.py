@@ -5,4 +5,4 @@ from django import forms
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Update
-        fields = ('body',)
+        fields = ('update_id','body','resolution',)

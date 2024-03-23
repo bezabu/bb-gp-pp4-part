@@ -32,6 +32,16 @@ def defect_detail(request, defect_id):
     updates = defect.updates.all().order_by("-created_on")
     update_count = defect.updates.count()
     
+    if request.method == "POST":
+        update_form = UpdateForm(data=request.POST)
+        if update_form.is_valid():
+            update = update_form.save(commit=False)
+            update.author = request.user
+            update.defect = defect
+            
+            update.save()
+
+
     update_form = UpdateForm()
 
     return render(
