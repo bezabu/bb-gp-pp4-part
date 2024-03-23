@@ -1,25 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="container-lg">
         <div class="row">
             <div class="col-1">
                 <h2><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></h2>
             </div>
-            <div class="col-11">
+            <div class="col-6">
                 <h2>{{ defect.title }}</h2>
+            </div>
+            <div class="col-5">
+                <p>Reported on {{ defect.reported_on }} by {{ defect.author }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col"> 
                 {% autoescape off %}
-                {{ defects.body }}
+                {{ defect.body }}
                 {% endautoescape %}
             </div>
         </div>
         <div class="row">
             <div class="col"> 
                 <!-- images go here -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Updates</h3>
             </div>
         </div>
         {% for update in updates %}
@@ -40,6 +49,25 @@
             <!-- images go here -->
         </div>
         {% endfor %}
+        <div class="row">
+            <div class="col">
+                <!-- new updates -->
+                <div class="div">
+                    <div class="col">
+                        {% if user.is_authenticated %}
+                        New Update
+                        <form id="UpdateForm" method="post" style="margin-top: 1.3em;">
+                        {{ update_form | crispy }}
+                        {% csrf_token %}
+                        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                        </form>
+                        {% else %}
+                        Log in to leave an update
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

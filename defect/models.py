@@ -56,3 +56,5 @@ class Update(models.Model):
     body = models.TextField()
     #image_url = models.SlugField()
     resolution = models.IntegerField(choices=STATUS, default=0)
+    class Meta:
+        ordering = ["-created_on"]

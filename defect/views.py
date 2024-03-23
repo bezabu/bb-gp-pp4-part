@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Defect, Category, Update
+from .forms import UpdateForm
 
 # Create your views here.
 
@@ -31,7 +32,7 @@ def defect_detail(request, defect_id):
     updates = defect.updates.all().order_by("-created_on")
     update_count = defect.updates.count()
     
-    paginate_by = def_per_page
+    update_form = UpdateForm()
 
     return render(
         request,
@@ -40,6 +41,7 @@ def defect_detail(request, defect_id):
             'defect': defect,
             'updates': updates,
             'update_count': update_count,
+            'update_form': update_form,
         },
     )
 
