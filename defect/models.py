@@ -47,7 +47,7 @@ class Update(models.Model):
     """
     Stores a single update to a defect, related to :model:'Defect' and :model:'auth.User'
     """
-    update_id = models.IntegerField(primary_key=True)
+    update_id = models.AutoField(primary_key=True)
     defect = models.ForeignKey(
         Defect, on_delete=models.CASCADE, related_name="updates")
     author = models.ForeignKey(

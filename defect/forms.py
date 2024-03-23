@@ -1,8 +1,13 @@
-from .models import Update
+from .models import Update, Defect
 from django import forms
 
 
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Update
-        fields = ('update_id','body','resolution',)
+        fields = ('body','resolution',)
+
+class DefectForm(forms.ModelForm):
+    class Meta:
+        model = Defect
+        fields = ('category', 'title', 'body')
