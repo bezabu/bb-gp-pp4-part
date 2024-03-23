@@ -2,6 +2,9 @@
 {% url 'dash_list' as dash_url %}
 {% url 'def_list' as def_url %}
 {% url 'cat_list' as cat_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +18,18 @@
 </head>
 <body>
     <header>
-        <h1>Problem Archive & Resolution Tool</h1>
+      <div class="row">
+        <div class="col-8">
+          <h1>Problem Archive & Resolution Tool</h1>
+        </div>
+        <div class="col-4">
+          <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+          <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+		href="{% url 'account_signup' %}">Register</a>
+    <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+        </div>
+      </div>
+        
     </header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
