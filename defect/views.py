@@ -43,6 +43,9 @@ def defect_detail(request, defect_id):
         },
     )
 
+def home_page(request):
+    return render(request, 'defect/index.html')
+
 class CategoryList(generic.ListView):
     queryset = Category.objects.all()
     template_name = "category_list.html"
