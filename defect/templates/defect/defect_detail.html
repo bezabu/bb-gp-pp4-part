@@ -54,7 +54,7 @@
                 <!-- new updates -->
                 <div class="div">
                     <div class="col">
-                        {% if user.is_authenticated %}
+                        {% if user.is_authenticated and perms.defect.add_update %}
                         New Update
                         <form id="UpdateForm" method="post" style="margin-top: 1.3em;">
                         {{ update_form | crispy }}

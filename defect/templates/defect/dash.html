@@ -31,15 +31,51 @@
             
                 <div class="col-1"><p><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></p></div>
                 <div class="col-1"><p>{{ defect.updates.count }}</p></div>
-                <div class="col-6"><a href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.title}}</p></a></div>    
+                <div class="col-6"><a href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.excerpt}}...</p></a></div>    
                 <div class="col-2"><p>{{ defect.reported_on }}</p></div>
                 <div class="col-2"><p>{{ defect.author }}</p></div>
             </div>
             {% endfor %}
         </div>
     </div>
+    
 </div>
 
+<div class="container-lg">
+    <div class="row">
+        <div class="col">
+            <h2>Recent Updates</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <p><i class="fa-solid fa-flag"></i></p>
+        </div>
+        <div class="col-6">
+            <p>title</p>
+        </div>
+        <div class="col-2">
+            <p>date logged</p>
+        </div>
+        <div class="col-2">
+            <p>logged by</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% for update in updates %}
+            <div class="row">
+            
+                <div class="col-1"><p><i class="fa-solid {{update.defect.category.fa_string}}" style="color: {{ update.defect.category.colour }};"></i></p></div>
+                <div class="col-6"><a href="{% url 'def_detail' update.defect.defect_id %}"><p>{{update.excerpt}}</p></a></div>    
+                <div class="col-2"><p>{{ update.created_on }}</p></div>
+                <div class="col-2"><p>{{ update.author }}</p></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</div>
 
 
 

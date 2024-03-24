@@ -21,8 +21,10 @@ def defect_list(request):
 
 def dashboard(request):
     defects = Defect.objects.all().order_by("-reported_on")[:10]
+    updates = Update.objects.all().order_by("-created_on")[:10]
     context = {
         'defects': defects,
+        'updates': updates,
     }
     paginate_by = def_per_page
     return render(
@@ -39,7 +41,11 @@ def defect_detail(request, defect_id):
             update = update_form.save(commit=False)
             update.author = request.user
             update.defect = defect
-            
+            if len(update.body)>30:
+                update.excerpt = update.body[:27] + "..."
+            else:
+                update.excerpt = update.body
+
             update.save()
             messages.add_message(
                 request, messages.SUCCESS,

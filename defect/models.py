@@ -24,7 +24,7 @@ class Defect(models.Model):
     """
     defect_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, unique=True)
-    excerpt = models.CharField(max_length=50, blank=True)
+    excerpt = models.CharField(max_length=30, blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="defects")
     author = models.ForeignKey(
@@ -54,6 +54,7 @@ class Update(models.Model):
         User, on_delete=models.CASCADE, related_name="updates")
     created_on = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
+    excerpt = models.CharField(max_length=30, blank=True)
     #image_url = models.SlugField()
     resolution = models.IntegerField(choices=STATUS, default=0)
     class Meta:
