@@ -25,6 +25,7 @@ class Defect(models.Model):
     defect_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, unique=True)
     excerpt = models.CharField(max_length=30, blank=True)
+    trunc_title = models.CharField(max_length=30, blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="defects")
     author = models.ForeignKey(

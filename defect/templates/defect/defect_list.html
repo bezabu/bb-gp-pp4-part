@@ -32,7 +32,7 @@
             
                 <div class="col-1"><p><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></p></div>
                 <div class="col-1"><p>{{ defect.updates.count }}</p></div>
-                <div class="col-6"><a href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.title}}</p></a></div>   
+                <div class="col-6"><a href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.trunc_title}}</p></a></div>   
                 <div class="col-2"><p>{{defect.reported_on}}</p></div>
                 <div class="col-2"><p>{{defect.author}}</p></div>
             </div>

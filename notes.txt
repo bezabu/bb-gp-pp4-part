@@ -23,3 +23,41 @@ class Update(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
     resolution = models.IntegerField(choices=STATUS, default=0)
+
+
+    def log_defect(request):
+    """
+    """
+    categories = Category.objects.all()
+
+    if request.method == "POST":
+        defect_form = DefectForm(data=request.POST)
+        if defect_form.is_valid():
+            defect = defect_form.save(commit=False)
+            defect.author = request.user
+            if len(defect.body)>30:
+                defect.excerpt = defect.body[:27] + "..."
+            else:
+                defect.excerpt = defect.body
+            
+            if len(defect.title)>30:
+                defect.trunc_title = defect.title[:27] + "..."
+            else:
+                defect.trunc_title = defect.title
+            
+            defect.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Defect logged'
+            )
+
+    defect_form = DefectForm()
+
+    return render(
+        request,
+        'defect/log_defect.html',
+        {
+            'catagories': catagories,
+            'defect_form': defect_form,
+        },
+    )

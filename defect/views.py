@@ -20,8 +20,8 @@ def defect_list(request):
         request, 'defect/defect_list.html', context)
 
 def dashboard(request):
-    defects = Defect.objects.all().order_by("-reported_on")[:10]
-    updates = Update.objects.all().order_by("-created_on")[:10]
+    defects = Defect.objects.all().order_by("-reported_on")[:5]
+    updates = Update.objects.all().order_by("-created_on")[:5]
     context = {
         'defects': defects,
         'updates': updates,
@@ -52,7 +52,6 @@ def defect_detail(request, defect_id):
                 'Update added'
             )
 
-
     update_form = UpdateForm()
 
     return render(
@@ -63,8 +62,13 @@ def defect_detail(request, defect_id):
             'updates': updates,
             'update_count': update_count,
             'update_form': update_form,
-        },
-    )
+        },)
+
+def log_defect(request):
+    """
+    """
+    categories = Category.objects.all()
+    return render(request, 'defect/log_defect.html')
 
 def home_page(request):
     return render(request, 'defect/index.html')

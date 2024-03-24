@@ -33,12 +33,14 @@
         </div>
         {% for update in updates %}
         <div class="row">
-            <div class="col">
+            
+            <div class="col-2">
                 {{ update.created_on }}
             </div>
-            <div class="col">
+            <div class="col-1">
                 {{ update.author }}
             </div>
+            <div class="col-9"></div>
         </div>
         <div class="row">
             <div class="col">
@@ -48,6 +50,7 @@
         <div class="row">
             <!-- images go here -->
         </div>
+        <br>
         {% endfor %}
         <div class="row">
             <div class="col">
