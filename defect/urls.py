@@ -6,6 +6,6 @@ urlpatterns = [
     path('defect_list/', views.defect_list, name='def_list'),
     path('category_list/', views.CategoryList.as_view(), name='cat_list'),
     path('dashboard/', views.dashboard, name='dash_list'),
-    path('<defect_id>/', views.defect_detail, name='def_detail'),
     path('log_defect/', views.log_defect, name='log_def'),
+    path('<defect_id>/', views.defect_detail, name='def_detail'),
 ]

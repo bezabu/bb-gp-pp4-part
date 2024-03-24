@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib import messages
 from .models import Defect, Category, Update
-from .forms import UpdateForm
+from .forms import UpdateForm, DefectForm
 
 # Create your views here.
 
@@ -68,7 +68,38 @@ def log_defect(request):
     """
     """
     categories = Category.objects.all()
-    return render(request, 'defect/log_defect.html')
+
+    if request.method == "POST":
+        defect_form = DefectForm(data=request.POST)
+        if defect_form.is_valid():
+            defect = defect_form.save(commit=False)
+            defect.author = request.user
+            if len(defect.body)>30:
+                defect.excerpt = defect.body[:27] + "..."
+            else:
+                defect.excerpt = defect.body
+            
+            if len(defect.title)>30:
+                defect.trunc_title = defect.title[:27] + "..."
+            else:
+                defect.trunc_title = defect.title
+            
+            defect.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Defect logged'
+            )
+
+    defect_form = DefectForm()
+
+    return render(
+        request,
+        'defect/log_defect.html',
+        {
+            'categories': categories,
+            'defect_form': defect_form,
+        },
+    )
 
 def home_page(request):
     return render(request, 'defect/index.html')
