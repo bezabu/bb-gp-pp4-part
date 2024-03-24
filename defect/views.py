@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.contrib import messages
 from .models import Defect, Category, Update
 from .forms import UpdateForm
 
@@ -40,6 +41,10 @@ def defect_detail(request, defect_id):
             update.defect = defect
             
             update.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Update added'
+            )
 
 
     update_form = UpdateForm()
