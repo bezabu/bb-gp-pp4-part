@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+
 # Create your models here.
 
 STATUS = ((0, "Open"), (1, "Resolved"), (2, "Sticky"))
@@ -35,7 +36,7 @@ class Defect(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="defects")
     body = models.TextField()
-    image_url = CloudinaryField('image', default='placeholder')
+    image_url = CloudinaryField('image', default='placeholder', blank=True)
     reported_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     reoccurance = models.IntegerField(default=0)
@@ -60,7 +61,7 @@ class Update(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
     excerpt = models.CharField(max_length=30, blank=True)
-    image_url = CloudinaryField('image', default='placeholder')
+    image_url = CloudinaryField('image', default='placeholder', blank=True)
     resolution = models.IntegerField(choices=STATUS, default=0)
     class Meta:
         ordering = ["-created_on"]

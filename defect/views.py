@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from .models import Defect, Category, Update
 from .forms import UpdateForm, DefectForm, CategoryForm
 
+
 # Create your views here.
 
 def_per_page = 10
@@ -35,7 +36,6 @@ def defect_detail(request, defect_id):
     defect = get_object_or_404(Defect.objects.all(), defect_id=defect_id)
     updates = defect.updates.all().order_by("created_on")
     update_count = defect.updates.count()
-    
     if request.method == "POST":
         update_form = UpdateForm(data=request.POST)
         if update_form.is_valid():
@@ -46,6 +46,8 @@ def defect_detail(request, defect_id):
                 update.excerpt = update.body[:27] + "..."
             else:
                 update.excerpt = update.body
+            #update.image_url = cloudinary.uploader.upload()
+            print(update)
             defect.status = update.resolution
             defect.save()
             update.save()

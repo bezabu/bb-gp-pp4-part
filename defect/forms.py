@@ -1,11 +1,17 @@
 from .models import Update, Defect, Category
+from cloudinary.forms import CloudinaryFileField
+from cloudinary.models import CloudinaryField
 from django import forms
 
 
 class UpdateForm(forms.ModelForm):
+    #image = CloudinaryFileField()
     class Meta:
         model = Update
-        fields = ('body','image_url','resolution',)
+        fields = ('body', 'image_url','resolution')
+    
+
+        
 
 class DefectForm(forms.ModelForm):
     class Meta:
