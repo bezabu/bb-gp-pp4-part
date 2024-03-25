@@ -1,4 +1,4 @@
-from .models import Update, Defect
+from .models import Update, Defect, Category
 from django import forms
 
 
@@ -11,3 +11,8 @@ class DefectForm(forms.ModelForm):
     class Meta:
         model = Defect
         fields = ('category', 'title', 'body')
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name', 'description', 'fa_string', 'colour')

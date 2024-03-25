@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib import messages
 from .models import Defect, Category, Update
-from .forms import UpdateForm, DefectForm
+from .forms import UpdateForm, DefectForm, CategoryForm
 
 # Create your views here.
 
@@ -20,7 +20,7 @@ def defect_list(request):
         request, 'defect/defect_list.html', context)
 
 def dashboard(request):
-    defects = Defect.objects.all().order_by("-reported_on")[:5]
+    defects = Defect.objects.filter(status=0).order_by("-reported_on")[:5]
     updates = Update.objects.all().order_by("-created_on")[:5]
     context = {
         'defects': defects,
@@ -32,7 +32,7 @@ def dashboard(request):
 
 def defect_detail(request, defect_id):
     defect = get_object_or_404(Defect.objects.all(), defect_id=defect_id)
-    updates = defect.updates.all().order_by("-created_on")
+    updates = defect.updates.all().order_by("created_on")
     update_count = defect.updates.count()
     
     if request.method == "POST":
@@ -98,6 +98,34 @@ def log_defect(request):
         {
             'categories': categories,
             'defect_form': defect_form,
+        },
+    )
+
+def category_list(request):
+    """
+    #
+    """
+    categories = Category.objects.all()
+
+    if request.method == "POST":
+        category_form = CategoryForm(data=request.POST)
+        if category_form.is_valid():
+            category = category_form.save(commit=False)
+            
+            category.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'New category successfully added'
+            )
+        
+    category_form = CategoryForm()
+
+    return render(
+        request, 
+        'defect/category_list.html', 
+        {
+            'categories': categories,
+            'category_form': category_form,
         },
     )
 
