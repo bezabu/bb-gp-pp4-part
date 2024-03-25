@@ -24,6 +24,12 @@
         <div class="row">
             <div class="col"> 
                 <!-- images go here -->
+                <!-- images go here -->
+            {% if defect.image_url == "placeholder" %}
+            <i class="fa-solid fa-xmark"></i>
+            {% else %}
+            <img class="card-img-top" src="{{ defect.image_url }}">
+            {% endif %}
             </div>
         </div>
         <div class="row">
@@ -49,6 +55,11 @@
         </div>
         <div class="row">
             <!-- images go here -->
+            {% if update.image_url == "placeholder" %}
+            <i class="fa-solid fa-xmark"></i>
+            {% else %}
+            <img src="{{ update.image_url }}">
+            {% endif %}
         </div>
         <div class="row">
             <div class="col">
