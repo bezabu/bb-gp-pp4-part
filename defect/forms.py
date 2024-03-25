@@ -5,12 +5,12 @@ from django import forms
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Update
-        fields = ('body','resolution',)
+        fields = ('body','image_url','resolution',)
 
 class DefectForm(forms.ModelForm):
     class Meta:
         model = Defect
-        fields = ('category', 'title', 'body')
+        fields = ('category', 'title', 'body', 'image_url')
 
 class CategoryForm(forms.ModelForm):
     class Meta:
