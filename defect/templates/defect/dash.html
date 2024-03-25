@@ -72,7 +72,7 @@
             
                 <div class="col-1"><p><i class="fa-solid {{update.defect.category.fa_string}}" style="color: {{ update.defect.category.colour }};"></i></p></div>
                 <div class="col-1"></div>
-                <div class="col-6"><a href="{% url 'def_detail' update.defect.defect_id %}"><p>{{update.excerpt}}</p></a></div>    
+                <div class="col-6"><a href="{% url 'def_detail' update.defect.defect_id %}#{{ update.update_id }}"><p>{{update.excerpt}}</p></a></div>    
                 <div class="col-2"><p>{{ update.created_on }}</p></div>
                 <div class="col-2"><p>{{ update.author }}</p></div>
             </div>
@@ -81,6 +81,13 @@
     </div>
     
 </div>
-
-
+{% if user.is_authenticated and perms.defect.add_defect %}
+<div class="container-lg">
+<div class="row">
+    <div class="col">
+        <a href="{% url 'log_def' %}"><h2>Log New Defect</h2></a>
+    </div>
+</div>
+</div>
+{% endif %}
 {% endblock %}

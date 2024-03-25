@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import Defect, Category, Update
 from .forms import UpdateForm, DefectForm, CategoryForm
 
@@ -64,6 +65,26 @@ def defect_detail(request, defect_id):
             'update_count': update_count,
             'update_form': update_form,
         },)
+
+def update_edit(request, defect_id, update_id):
+    """
+    view to edit updates
+    """
+    if request.method == 'POST':
+        defect = get_object_or_404(Defect, defect_id=defect_id)
+        update = get_object_or_404(queryset, update_id=update_id)
+        update_form = UpdateForm(data=request.POST, instance=update)
+
+        if update_form.is_valid() and update.author == request.user:
+            update = update_form.save(commit=False)
+            update.defect = defect
+            update.save()
+            messages.add_message(request, messages.SUCCESS, 'Update successfully edited!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error editing update!')
+    
+    return HttpResponseRedirect(revese('defect_detail', args=[defect_id]))
+
 
 def log_defect(request):
     """

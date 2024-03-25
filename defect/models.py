@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 
 STATUS = ((0, "Open"), (1, "Resolved"), (2, "Sticky"))
 
+def get_null_category():
+    return Category.objects.get_or_create(name='Null')
+
 class Category(models.Model):
     """
     Stores a single category.
