@@ -72,7 +72,7 @@ def update_edit(request, defect_id, update_id):
     """
     if request.method == 'POST':
         defect = get_object_or_404(Defect, defect_id=defect_id)
-        update = get_object_or_404(queryset, update_id=update_id)
+        update = get_object_or_404(Update, update_id=update_id)
         update_form = UpdateForm(data=request.POST, instance=update)
 
         if update_form.is_valid() and update.author == request.user:
@@ -83,8 +83,22 @@ def update_edit(request, defect_id, update_id):
         else:
             messages.add_message(request, messages.ERROR, 'Error editing update!')
     
-    return HttpResponseRedirect(revese('defect_detail', args=[defect_id]))
+    return HttpResponseRedirect(revese('def_detail', args=[defect_id]))
 
+def update_delete(request, defect_id, update_id):
+    """
+
+    """
+    defect = get_object_or_404(Defect, defect_id=defect_id)
+    update = get_object_or_404(Update, update_id=update_id)
+
+    if update.author == request.user:
+        update.delete()
+        messages.add_message(request, messages.SUCCESS, 'Update deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own updates!')
+    
+    return HttpResponseRedirect(reverse('def_detail', args=[defect_id]))
 
 def log_defect(request):
     """

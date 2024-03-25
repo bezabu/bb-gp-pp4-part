@@ -32,7 +32,7 @@
             </div>
         </div>
         {% for update in updates %}
-        <div class="row" id="{{ update.update_id }}">
+        <div class="row">
             
             <div class="col-2">
                 {{ update.created_on }}
@@ -42,13 +42,21 @@
             </div>
             <div class="col-9"></div>
         </div>
-        <div class="row">
+        <div class="row" id="update_{{ update.update_id }}">
             <div class="col">
                 {{ update.body }}
             </div>
         </div>
         <div class="row">
             <!-- images go here -->
+        </div>
+        <div class="row">
+            <div class="col">
+                {% if user.is_authenticated and update.author == user %}
+                <!--<button class="btn btn-edit" update_id="{{ update.update_id }}">Edit</button>-->
+                <button class="btn btn-delete" update_id="{{ update.update_id }}">Delete</button>
+                {% endif %}
+            </div>
         </div>
         <br>
         {% endfor %}
@@ -73,4 +81,32 @@
         </div>
     </div>
 
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1"
+  aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+          id="deleteModalLabel">Delete Update?</h5>
+        <button type="button" class="btn-close"
+          data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete your update?
+        This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal">Close</button>
+        <a id="deleteConfirm" href="#" class="btn
+          btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/updates.js' %}"></script>
 {% endblock %}
