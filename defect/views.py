@@ -37,7 +37,6 @@ def dashboard(request):
         'defects': defects,
         'updates': updates,
     }
-    paginate_by = def_per_page
     return render(
         request, 'defect/dash.html', context)
 

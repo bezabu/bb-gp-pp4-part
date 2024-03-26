@@ -40,5 +40,22 @@
             {% endfor %}
         </div>
     </div>
+    <div class="row">
+        <div class="col-1">
+            {% if defects.has_previous %}
+            <a href='{% url "def_list" defects.previous_page_number %}'>Previous </a>
+            {% endif %}
+        </div>
+        <div class="col-10">
+            <p>
+                Page {{ defects.number }} of {{ defects.paginator.num_pages }}
+            </p>
+        </div>
+        <div class="col-1">
+            {% if defects.has_next %}
+            <a href='{% url "def_list" defects.next_page_number %}' > Next</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
