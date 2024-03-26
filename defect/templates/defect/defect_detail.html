@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load cloudinary %}   
 {% block content %}
     <div class="container-lg">
         <div class="row">
@@ -29,6 +30,7 @@
             <p>No images.</p>
             {% else %}
             <img class="img-fluid img-thumbnail" src="{{ defect.image_url.url }}">
+            {% cloudinary defect.image_url format="jpg" width=120 height=80 crop="fill" %}
             {% endif %}
             </div>
         </div>
@@ -79,7 +81,7 @@
                     <div class="col">
                         {% if user.is_authenticated and perms.defect.add_update %}
                         New Update
-                        <form id="UpdateForm" method="post" style="margin-top: 1.3em;">
+                        <form id="UpdateForm" action="{% url 'def_detail' defect.defect_id %}" method="post" style="margin-top: 1.3em;" enctype="multipart/form-data">
                         {{ update_form | crispy }}
                         {% csrf_token %}
                         <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>

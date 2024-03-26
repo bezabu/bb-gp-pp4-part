@@ -7,7 +7,7 @@
         <div class="col">
             {% if user.is_authenticated and perms.defect.add_defect %}
                         Log New Defect
-                        <form id="DefectForm" method="post" style="margin-top: 1.3em;">
+                        <form id="DefectForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
                             {{ defect_form | crispy }}
                             {% csrf_token %}
                             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>

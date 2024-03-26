@@ -8,15 +8,17 @@ class UpdateForm(forms.ModelForm):
     #image = CloudinaryFileField()
     class Meta:
         model = Update
-        fields = ('body', 'image_url','resolution')
+        fields = ('body', 'resolution')
     
 
         
 
 class DefectForm(forms.ModelForm):
+    #image_url = CloudinaryFileField()
     class Meta:
         model = Defect
         fields = ('category', 'title', 'body', 'image_url')
+        #fields = ('category', 'title', 'body')
 
 class CategoryForm(forms.ModelForm):
     class Meta:

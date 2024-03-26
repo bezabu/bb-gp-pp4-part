@@ -2,9 +2,10 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+import cloudinary
+from cloudinary.forms import cl_init_js_callbacks  
 from .models import Defect, Category, Update
 from .forms import UpdateForm, DefectForm, CategoryForm
-
 
 # Create your views here.
 
@@ -38,6 +39,7 @@ def defect_detail(request, defect_id):
     update_count = defect.updates.count()
     if request.method == "POST":
         update_form = UpdateForm(data=request.POST)
+        #update_form = UpdateForm(data=request.POST, file=request.FILES)
         if update_form.is_valid():
             update = update_form.save(commit=False)
             update.author = request.user
@@ -46,7 +48,7 @@ def defect_detail(request, defect_id):
                 update.excerpt = update.body[:27] + "..."
             else:
                 update.excerpt = update.body
-            #update.image_url = cloudinary.uploader.upload()
+            #update.image_url = cloudinary.uploader.upload(file)
             print(update)
             defect.status = update.resolution
             defect.save()
@@ -108,7 +110,9 @@ def log_defect(request):
     categories = Category.objects.all()
 
     if request.method == "POST":
-        defect_form = DefectForm(data=request.POST)
+        #defect_form = DefectForm(data=request.POST)
+        defect_form = DefectForm(request.POST, request.FILES)
+        #file = request.FILES
         if defect_form.is_valid():
             defect = defect_form.save(commit=False)
             defect.author = request.user
@@ -121,12 +125,13 @@ def log_defect(request):
                 defect.trunc_title = defect.title[:27] + "..."
             else:
                 defect.trunc_title = defect.title
-            
+            #defect.image_url=cloudinary.uploader.upload(request.FILES)
             defect.save()
             messages.add_message(
                 request, messages.SUCCESS,
                 'Defect logged'
             )
+
 
     defect_form = DefectForm()
 
