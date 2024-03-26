@@ -38,8 +38,8 @@ def defect_detail(request, defect_id):
     updates = defect.updates.all().order_by("created_on")
     update_count = defect.updates.count()
     if request.method == "POST":
-        update_form = UpdateForm(data=request.POST)
-        #update_form = UpdateForm(data=request.POST, file=request.FILES)
+        #update_form = UpdateForm(data=request.POST)
+        update_form = UpdateForm(request.POST, request.FILES)
         if update_form.is_valid():
             update = update_form.save(commit=False)
             update.author = request.user

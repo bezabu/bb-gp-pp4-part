@@ -8,7 +8,7 @@ class UpdateForm(forms.ModelForm):
     #image = CloudinaryFileField()
     class Meta:
         model = Update
-        fields = ('body', 'resolution')
+        fields = ('body', 'image_url', 'resolution')
     
 
         
