@@ -49,19 +49,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-1">
-            <p><i class="fa-solid fa-flag"></i></p>
+        <div class="col-2">
+            <p>defect</p>
         </div>
         <div class="col-1">
             <p><i class="fa-solid fa-image"></i></p>
         </div>
         <div class="col-6">
-            <p>title</p>
+            
         </div>
         <div class="col-2">
             <p>date logged</p>
         </div>
-        <div class="col-2">
+        <div class="col-1">
             <p>logged by</p>
         </div>
     </div>
@@ -70,7 +70,7 @@
             {% for update in updates %}
             <div class="row">
             
-                <div class="col-1"><p><i class="fa-solid {{update.defect.category.fa_string}}" style="color: {{ update.defect.category.colour }};"></i></p></div>
+                <div class="col-2"><p><a href="{% url 'def_detail' update.defect.defect_id %}">{{ update.defect.trunc_title }}</a></p></div>
                 <div class="col-1">
                     {% if "placeholder" in update.image_url.url %}
 
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-6"><a href="{% url 'def_detail' update.defect.defect_id %}#update_{{ update.update_id }}"><p>{{update.excerpt}}</p></a></div>    
                 <div class="col-2"><p>{{ update.created_on }}</p></div>
-                <div class="col-2"><p>{{ update.author }}</p></div>
+                <div class="col-1"><p>{{ update.author }}</p></div>
             </div>
             {% endfor %}
         </div>

@@ -59,7 +59,7 @@
                 <a class="nav-link{% if request.path == dash_url %} active{% endif %} {% if user.is_authenticated is false %}disabled{% endif %}" aria-current="page" href="{% url 'dash_list' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link{% if request.path == def_url %} active{% endif %}" href="{% url 'def_list' %}">Defects</a>
+                <a class="nav-link{% if request.path == def_url %} active{% endif %}" href="{% url 'def_list' 1 %}">Defects</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link{% if request.path == cat_url %} active{% endif %}" href="{% url 'cat_list' %}">Categories</a>

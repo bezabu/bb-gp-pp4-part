@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.core.paginator import Paginator, EmptyPage
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -11,14 +12,21 @@ from .forms import UpdateForm, DefectForm, CategoryForm
 
 def_per_page = 10
 
-def defect_list(request):
+def defect_list(request, page=1):
     defects = Defect.objects.all()
     categories = Category.objects.all()
+    #page = request.GET.get('page', 1)
+    paginator = Paginator(defects, 15)
+
+    try:
+        defects = paginator.page(page)
+    except EmptyPage:
+        defects = paginator.page(paginator.num_pages)
+
     context = {
         'defects': defects,
         'categories': categories,
     }
-    paginate_by = def_per_page
     return render(
         request, 'defect/defect_list.html', context)
 

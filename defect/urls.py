@@ -3,7 +3,8 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.dashboard, name='dash_list'),
-    path('defect_list/', views.defect_list, name='def_list'),
+    #path('defect_list/', views.defect_list, name='def_list'),
+    path('defect_list/<int:page>/', views.defect_list, name='def_list'),
     path('category_list/', views.category_list, name='cat_list'),
     path('dashboard/', views.dashboard, name='dash_list'),
     path('log_defect/', views.log_defect, name='log_def'),

@@ -29,7 +29,8 @@
             {% if "placeholder" in defect.image_url.url %}
             <p>No images.</p>
             {% else %}
-            <img width="300" class="img-fluid img-thumbnail" src="{{ defect.image_url.url }}">
+            <a href="{{ defect.image_url.url }}" target="_BLANK">
+            <img width="300" class="img-fluid img-thumbnail" src="{{ defect.image_url.url }}"></a>
             <!--{% cloudinary defect.image_url format="jpg" width=120 height=80 crop="fill" %}-->
             {% endif %}
             </div>
@@ -60,7 +61,8 @@
             {% if "placeholder" in update.image_url.url %}
             <p>No images.</p>
             {% else %}
-            <img class="img-fluid img-thumbnail" src="{{ update.image_url.url }}">
+            <a href="{{ update.image_url.url }}" target="_BLANK">
+            <img class="img-fluid img-thumbnail" src="{{ update.image_url.url }}"></a>
             {% endif %}
         </div>
         <div class="row">
