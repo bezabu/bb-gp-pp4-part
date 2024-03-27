@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-lg">
+    <div class="row">
+        <div class="col-1">
+            <p>Username</p>
+        </div>
+        <div class="col-1">
+            <p>Active</p>
+        </div>
+        <div class="col-4">
+            <p>Level 1</p>
+        </div>
+        <div class="col-1">
+            <p>Level 2</p>
+        </div>
+        <div class="col-2">
+            <p>Level 3</p>
+        </div>
+
+        <div class="col-1">
+            <p>Approve</p>
+        </div>
+    </div>
+    {% for user in users %}
+    <div class="row">
+        <div class="col-1">
+            {{ user }}
+        </div>
+        <div class="col-1">
+            {{ user.is_active }}
+        </div>
+        <div class="col-1">
+            {% if 'defect.view_defect' in user.get_all_permissions %}
+            <p>View Defect</p>
+            {% endif %}  
+        </div>
+        <div class="col-1">
+            {% if 'defect.add_defect' in user.get_all_permissions %}
+            <p>Add Defect</p>
+            {% endif %}  
+        </div>
+        <div class="col-2">
+            {% if 'defect.view_update' in user.get_all_permissions %}
+            <p>View Updates</p>
+            {% endif %}  
+        </div>
+        <div class="col-1">
+            {% if 'defect.add_update' in user.get_all_permissions %}
+            <p>Add Updates</p>
+            {% endif %}  
+        </div>
+        <div class="col-1">
+            {% if 'defect.add_category' in user.get_all_permissions %}
+            <p>Add Category</p>
+            {% endif %}  
+        </div>
+        <div class="col-1">
+            {% if 'auth.change_user' in user.get_all_permissions %}
+            <p>Approve Users</p>
+            {% endif %}  
+        </div>
+        <div class="col-1">
+            {% if user.is_authenticated and perms.auth.change_user and 'defect.view_defect' not in user.get_all_permissions %}
+            <p>Approve</p>
+            {% endif %}  
+        </div>
+        <!--{{ user.get_all_permissions }}-->
+    </div>
+            
+
+            {% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}

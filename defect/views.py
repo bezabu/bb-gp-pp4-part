@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.core.paginator import Paginator, EmptyPage
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.models import User, Permission
 from django.http import HttpResponseRedirect
 import cloudinary
 from cloudinary.forms import cl_init_js_callbacks  
@@ -177,6 +178,19 @@ def category_list(request):
             'categories': categories,
             'category_form': category_form,
         },
+    )
+
+def user_approval(request):
+    """
+    """
+    users = User.objects.all()
+    
+    return render(
+        request,
+        'defect/user_approval.html',
+        {
+            'users': users,
+        }
     )
 
 def home_page(request):
