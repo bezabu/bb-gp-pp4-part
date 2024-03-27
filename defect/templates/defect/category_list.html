@@ -19,7 +19,7 @@
             {% endfor %}
         </div>
     </div>
-    {% if user.is_authenticated and perms.add_category %}
+    {% if user.is_authenticated and perms.defect.add_category %}
     <div class="row">
         <div class="col">
             <h2>Add category</h2>

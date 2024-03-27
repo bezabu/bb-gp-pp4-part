@@ -7,6 +7,9 @@ const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
 
+const approveButtons = document.getElementsByClassName("btn-approve");
+
+
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
         let updateId = e.target.getAttribute("update_id");
@@ -24,3 +27,4 @@ for (let button of deleteButtons) {
         deleteModal.show();
     });
 }
+

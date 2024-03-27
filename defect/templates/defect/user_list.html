@@ -12,14 +12,14 @@
         <div class="col-4">
             <p>Level 1</p>
         </div>
-        <div class="col-1">
+        <div class="col-2">
             <p>Level 2</p>
         </div>
         <div class="col-2">
             <p>Level 3</p>
         </div>
 
-        <div class="col-1">
+        <div class="col-2">
             <p>Approve</p>
         </div>
     </div>
@@ -46,7 +46,7 @@
             <p>View Updates</p>
             {% endif %}  
         </div>
-        <div class="col-1">
+        <div class="col-2">
             {% if 'defect.add_update' in user.get_all_permissions %}
             <p>Add Updates</p>
             {% endif %}  
@@ -61,9 +61,9 @@
             <p>Approve Users</p>
             {% endif %}  
         </div>
-        <div class="col-1">
+        <div class="col-2">
             {% if user.is_authenticated and perms.auth.change_user and 'defect.view_defect' not in user.get_all_permissions %}
-            <p>Approve</p>
+            <a href="./admin/auth/user">Admin panel</a>
             {% endif %}  
         </div>
         <!--{{ user.get_all_permissions }}-->

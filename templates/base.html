@@ -1,7 +1,8 @@
 {% load static %}
 {% url 'dash_list' as dash_url %}
-{% url 'def_list' as def_url %}
+{% url 'def_list' 1 as def_url %}
 {% url 'cat_list' as cat_url %}
+{% url 'user_list' as user_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -65,7 +66,7 @@
                 <a class="nav-link{% if request.path == cat_url %} active{% endif %}" href="{% url 'cat_list' %}">Categories</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">User Settings</a>
+                <a class="nav-link{% if request.path == user_url %} active{% endif %} {% if 'auth.change_user' not in user.get_all_permissions %}disabled" aria-disabled="true{% endif %}" href="{% url 'user_list' %}">User Settings</a>
               </li>
             </ul>
           </div>
