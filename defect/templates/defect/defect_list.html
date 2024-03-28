@@ -56,26 +56,26 @@
         <br>
     <!-- column headers -->
     <div class="row border border-secondary rounded bg-white">
-        <div class="col-1">
+        <div class="col px-0 py-1">
             <p><i class="fa-solid fa-flag"></i></p>
         </div>
-        <div class="col-1">
+        <div class="col px-0 py-1">
             <p><i class="fa-solid fa-comment"></i></p>
         </div>
-        <div class="col-2">
+        <div class="col-3 px-0 py-1">
             <p class="text-truncate">title</p>
         </div>
-        <div class="col-3">
+        <div class="col-3 px-0 py-1">
             
         </div>
-        <div class="col-2">
-            <p class="text-truncate">date logged</p>
+        <div class="col px-0 py-1">
+            <p class="text-truncate">date</p>
         </div>
-        <div class="col-2">
-            <p class="text-truncate">logged by</p>
+        <div class="col-1 px-0 py-1">
+            <p class="text-truncate">author</p>
         </div>
-        <div class="col-1">
-            <p class="text-truncate">Resolved</p>
+        <div class="col px-0 py-1">
+            <p class="text-truncate m-auto">Resolved</p>
         </div>
     </div>
     <br>
@@ -86,13 +86,20 @@
             
             <div class="row border-top border-bottom">
             
-                <div class="col-1"><p><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
-                <div class="col-1"><p>{{ defect.updates.count }}</p></div>
-                <div class="col-3"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.trunc_title}}</p></a></div>   
-                <div class="col-3"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.excerpt}}</p></a></div>   
-                <div class="col-2 mx-0"><p class="text-truncate">{{defect.reported_on}}</p></div>
-                <div class="col-1"><p class="text-truncate">{{defect.author}}</p></div>
-                <div class="col-1"><p class="text-truncate">{{defect.status}}</p></div>
+                <div class="col px-0 py-1"><p class="m-auto"><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
+                <div class="col px-0 py-1"><p class="m-auto">{{ defect.updates.count }}</p></div>
+                <div class="col-3 px-0 py-1"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.trunc_title}}</p></a></div>   
+                <div class="col-3 px-0 py-1"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.excerpt}}</p></a></div>   
+                <div class="col px-0 py-1"><p class="text-truncate m-auto">{{defect.reported_on|date:"d/m/Y"}}</p></div>
+                <div class="col-1 px-0 py-1"><p class="text-truncate m-auto">{{defect.author}}</p></div>
+                <div class="col px-0 py-1"><p class="text-truncate m-auto">
+                    {% if defect.status %}
+                    <i class="fa-solid fa-circle-check"></i>
+                    {% else %}
+                    <i class="fa-solid fa-gear"></i>
+                    {% endif %}
+                    <!--{{defect.status}}-->
+                </p></div>
             </div>
 
             <div class="row border-bottom">

@@ -19,10 +19,10 @@
             <p>title</p>
         </div>
         <div class="col-2">
-            <p>date logged</p>
+            <p  class="text-truncate">date logged</p>
         </div>
         <div class="col-2">
-            <p>logged by</p>
+            <p  class="text-truncate">logged by</p>
         </div>
     </div>
     <br>
@@ -37,9 +37,9 @@
                     
                 </div>
                 <div class="col-1"><p>{{ defect.updates.count }}</p></div>
-                <div class="col-6"><a class="text-dark" href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.trunc_title}}</p></a></div>    
-                <div class="col-2"><p>{{ defect.reported_on }}</p></div>
-                <div class="col-2"><p>{{ defect.author }}</p></div>
+                <div class="col-6"><a class="text-dark text-truncate" href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.trunc_title}}</p></a></div>    
+                <div class="col-2"><p class="text-truncate">{{ defect.reported_on|date:"d/m/Y" }}</p></div>
+                <div class="col-2"><p class="text-truncate">{{ defect.author }}</p></div>
             </div>
             {% endfor %}
         </div>
@@ -55,19 +55,19 @@
     </div>
     <div class="row border border-secondary rounded bg-white">
         <div class="col-2">
-            <p>defect</p>
+            <p class="text-truncate">defect</p>
         </div>
         <div class="col-1">
             <p><i class="fa-solid fa-image"></i></p>
         </div>
-        <div class="col-6">
+        <div class="col-5">
             
         </div>
         <div class="col-2">
-            <p>date logged</p>
+            <p class="text-truncate">date logged</p>
         </div>
         <div class="col-1">
-            <p>logged by</p>
+            <p class="text-truncate">logged by</p>
         </div>
     </div>
     <br>
@@ -76,7 +76,7 @@
             {% for update in updates %}
             <div class="row border border-top border-bottom">
             
-                <div class="col-2"><p><a class="text-dark" href="{% url 'def_detail' update.defect.defect_id %}">{{ update.defect.trunc_title }}</a></p></div>
+                <div class="col-2"><p class="text-truncate"><a class="text-dark" href="{% url 'def_detail' update.defect.defect_id %}">{{ update.defect.trunc_title }}</a></p></div>
                 <div class="col-1">
                     {% if "placeholder" in update.image_url.url %}
 
@@ -84,9 +84,9 @@
                     <a href="{{ update.image_url.url }}" target="_BLANK"><p><i class="fa-solid fa-image"></i></p></a>
                     {% endif %}
                 </div>
-                <div class="col-6"><a class="text-dark" href="{% url 'def_detail' update.defect.defect_id %}#update_{{ update.update_id }}"><p>{{update.excerpt}}</p></a></div>    
-                <div class="col-2"><p>{{ update.created_on }}</p></div>
-                <div class="col-1"><p>{{ update.author }}</p></div>
+                <div class="col-5"><a class="text-dark" href="{% url 'def_detail' update.defect.defect_id %}#update_{{ update.update_id }}"><p class="text-truncate">{{update.excerpt}}</p></a></div>    
+                <div class="col-2"><p class="text-truncate">{{ update.created_on|date:"d/m/Y" }}</p></div>
+                <div class="col-1"><p class="text-truncate">{{ update.author }}</p></div>
             </div>
             {% endfor %}
         </div>
