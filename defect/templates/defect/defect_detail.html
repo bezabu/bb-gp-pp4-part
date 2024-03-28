@@ -4,7 +4,8 @@
 {% load cloudinary %}   
 {% block content %}
     <div class="container-lg">
-        <div class="row">
+        
+        <div class="row border border-secondary rounded bg-white mt-4">
             <div class="col-1">
                 <h2><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></h2>
             </div>
@@ -15,14 +16,16 @@
                 <p>Reported on {{ defect.reported_on }} by {{ defect.author }}</p>
             </div>
         </div>
-        <div class="row">
+        
+        <div class="row border border-secondary rounded bg-white mt-3">
             <div class="col"> 
                 {% autoescape off %}
                 {{ defect.body }}
                 {% endautoescape %}
             </div>
         </div>
-        <div class="row">
+        
+        <div class="row border border-secondary rounded bg-white mt-3">
             <div class="col"> 
                 <!-- images go here -->
                 <!-- images go here -->
@@ -35,28 +38,31 @@
             {% endif %}
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col">
                 <h3>Updates</h3>
             </div>
+            <br>
         </div>
         {% for update in updates %}
-        <div class="row">
+        <div class="row border border-secondary rounded bg-white mt-4">
             
-            <div class="col-2">
+            <div class="col-3">
                 {{ update.created_on }}
             </div>
             <div class="col-1">
                 {{ update.author }}
             </div>
-            <div class="col-9"></div>
+            
         </div>
-        <div class="row" id="update_{{ update.update_id }}">
+        
+        <div class="row border border-secondary rounded bg-white mt-3" id="update_{{ update.update_id }}">
             <div class="col">
                 {{ update.body }}
             </div>
         </div>
-        <div class="row">
+        
+        <div class="row border border-secondary rounded bg-white mt-3">
             <!-- images go here -->
             {% if "placeholder" in update.image_url.url %}
             <p>No images.</p>
@@ -65,11 +71,11 @@
             <img class="img-fluid img-thumbnail" src="{{ update.image_url.url }}"></a>
             {% endif %}
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col">
                 {% if user.is_authenticated and update.author == user %}
                 <!--<button class="btn btn-edit" update_id="{{ update.update_id }}">Edit</button>-->
-                <button class="btn btn-delete" update_id="{{ update.update_id }}">Delete</button>
+                <button class="btn btn-delete btn-danger" update_id="{{ update.update_id }}">Delete</button>
                 {% endif %}
             </div>
         </div>
@@ -79,10 +85,10 @@
         <div class="row">
             <div class="col">
                 <!-- new updates -->
-                <div class="div">
+                <div class="div my-5">
                     <div class="col">
                         {% if user.is_authenticated and perms.defect.add_update %}
-                        New Update
+                        <h2>New Update</h2>
                         <form id="UpdateForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
                         {{ update_form | crispy }}
                         {% csrf_token %}

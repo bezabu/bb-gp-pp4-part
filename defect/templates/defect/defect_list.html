@@ -4,56 +4,58 @@
 <div class="container-lg">
     <div class="row">
         <div class="col">
-            <h2>Defect List</h2>
+            <h2 class="text-center">Defect List</h2>
         </div>
     </div>
-    <div class="form-row">
+    
         <!-- filtering form -->
             <form method="GET" action=".">
-                
-                <div class="form-group col-1">
-                <select class="input-group form-select" id="category" name="category" aria-label="Select category">
-                    <option value="all" selected>All</option>
-                    {% for category in categories %}
-                    {% if category.name != 'Null' %}
-                    <option value="{{ category.id }}">{{ category.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="form-group col-3">
-                    <input class="input-group form-control" type="search" id="title" name="title_contains" aria-label="Search in title" placeholder="search in title">
+                <div class="row border border-secondary rounded bg-white">
+                    <div class="col-1">
+                        <select class="form-control" id="category" name="category" aria-label="Select category">
+                        <option value="all" selected>All</option>
+                        {% for category in categories %}
+                        {% if category.name != 'Null' %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endif %}
+                        {% endfor %}
+                        </select>
                     </div>
-                </div>
-                <!-- user-->
-                <div class="form-group col-2">
-                <select class="input-group form-select" id="author" name="author" aria-label="Select author">
+                    <div class="col-3">
+                <input class="form-control" type="search" id="title_contains" name="title_contains" aria-label="Search in title" placeholder="search in title">
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="search" id="body_contains" name="body_contains" aria-label="Search in body" placeholder="search in body">
+                            </div>
+                <div class="col-1">
+                <select class="form-control" id="author" name="author" aria-label="Select author">
                     <option value="all" selected>All</option>
                     {% for user in users %}
                     <option value="{{ user.id }}">{{ user }}</option>
                     {% endfor %}
-                  </select>
+                </select>
                 </div>
-                <div class="form-group col-1">
-                    <select class="input-group form-select" id="status" name="status" aria-label="Select status filter">
-                        <option value="all" selected>Any</option>
-                        <option value=0>Open</option>
-                        <option value=1>Resolved</option>
-                    </select>
+                <div class="col-1">
+                <select class="form-control" id="status" name="status" aria-label="Select status filter">
+                    <option value="all" selected>Any</option>
+                    <option value=0>Open</option>
+                    <option value=1>Resolved</option>
+                </select>
                 </div>
-                <div class="form-group col-1">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-primary btn-sm form-control">Search</button>
                 </div>
+                
             </form>
-        <div class="col">
+        <div class="col-1">
             <form action="{% url 'def_list' 1 %}">
-                <input class="btn btn-secondary" type="submit" value="Reset" />
+                <input class="form-control btn btn-secondary btn-sm" type="submit" value="Reset" />
             </form>
-            
+            </div>
         </div>
-        </div>
+        <br>
     <!-- column headers -->
-    <div class="row">
+    <div class="row border border-secondary rounded bg-white">
         <div class="col-1">
             <p><i class="fa-solid fa-flag"></i></p>
         </div>
@@ -61,45 +63,50 @@
             <p><i class="fa-solid fa-comment"></i></p>
         </div>
         <div class="col-2">
-            <p>title</p>
+            <p class="text-truncate">title</p>
         </div>
         <div class="col-3">
             
         </div>
         <div class="col-2">
-            <p>date logged</p>
+            <p class="text-truncate">date logged</p>
         </div>
         <div class="col-2">
-            <p>logged by</p>
+            <p class="text-truncate">logged by</p>
         </div>
         <div class="col-1">
-            <p>Resolved</p>
+            <p class="text-truncate">Resolved</p>
         </div>
     </div>
+    <br>
     <!-- data -->
-    <div class="row">
+    <div class="row border border-secondary rounded bg-white">
         <div class="col">
             {% for defect in defects %}
             
-            <div class="row">
+            <div class="row border-top border-bottom">
             
                 <div class="col-1"><p><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
                 <div class="col-1"><p>{{ defect.updates.count }}</p></div>
-                <div class="col-2"><a class="link-dark" href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.trunc_title}}</p></a></div>   
-                <div class="col-3"><a class="link-dark" href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.excerpt}}</p></a></div>   
-                <div class="col-2"><p>{{defect.reported_on}}</p></div>
-                <div class="col-2"><p>{{defect.author}}</p></div>
-                <div class="col-1"><p>{{defect.status}}</p></div>
+                <div class="col-3"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.trunc_title}}</p></a></div>   
+                <div class="col-3"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.excerpt}}</p></a></div>   
+                <div class="col-2 mx-0"><p class="text-truncate">{{defect.reported_on}}</p></div>
+                <div class="col-1"><p class="text-truncate">{{defect.author}}</p></div>
+                <div class="col-1"><p class="text-truncate">{{defect.status}}</p></div>
             </div>
-            
+
+            <div class="row border-bottom">
+                
+            </div>
             {% endfor %}
         </div>
     </div>
-    <div class="row">
+    <br>
+    <div class="row justify-content-center">
         <div class="col">
         <!-- pagination -->
             <nav class="pagination-nav" aria-label="Page navigation">
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                     {% if defects.has_previous %}
                     <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.previous_page_number %}">Previous</a></li>
                     {% endif %}

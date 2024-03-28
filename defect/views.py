@@ -18,12 +18,15 @@ def defect_list(request, page=1):
     defects = Defect.objects.all()
     categories = Category.objects.all()
     title_contains = request.GET.get('title_contains')
+    body_contains = request.GET.get('body_contains')
     category_is = request.GET.get('category')
     status_is = request.GET.get('status')
     author_is = request.GET.get('author')
 
     if title_contains != '' and title_contains is not None:
         defects = defects.filter(title__icontains=title_contains)
+    if body_contains != '' and body_contains is not None:
+        defects = defects.filter(body__icontains=body_contains)
     if category_is !='' and category_is !='all' and category_is is not None:
         defects = defects.filter(category=category_is)
     if status_is !='' and status_is !='all' and category_is is not None:
@@ -31,7 +34,7 @@ def defect_list(request, page=1):
     if author_is !='' and author_is !='all' and author_is is not None:
         defects = defects.filter(author=author_is)
         
-    #page = request.GET.get('page', 1)
+    
     paginator = Paginator(defects, 15)
 
     try:

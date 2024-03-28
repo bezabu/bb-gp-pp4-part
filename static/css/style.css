@@ -5,9 +5,13 @@ h1 {
 .fa-icon-lg {
     font-size: xx-large;
 }
-
+a {
+    text-decoration: none;
+    color: black;
+}
 a:link {
     text-decoration: none;
+    color: black;
 }
 a:hover {
     text-decoration: underline;
@@ -18,11 +22,8 @@ a:hover {
 }
 
 .bb-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
+
+    height: 100px;
     background-color: aqua;
 }
 

@@ -4,10 +4,10 @@
 <div class="container-lg">
     <div class="row">
         <div class="col">
-            <h2>Recent Defects</h2>
+            <h2 class="text-center">Recent Defects</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row border border-secondary rounded bg-white">
         <div class="col-1">
             <p><i class="fa-solid fa-flag"></i></p>
         </div>
@@ -25,14 +25,19 @@
             <p>logged by</p>
         </div>
     </div>
-    <div class="row">
+    <br>
+    <div class="row border border-secondary rounded bg-white">
         <div class="col">
             {% for defect in defects %}
-            <div class="row">
+            <div class="row border border-top border-bottom py-0">
             
-                <div class="col-1"><p><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></p></div>
+                <div class="col-1">
+                    
+                    <p><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></p>
+                    
+                </div>
                 <div class="col-1"><p>{{ defect.updates.count }}</p></div>
-                <div class="col-6"><a href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.trunc_title}}</p></a></div>    
+                <div class="col-6"><a class="text-dark" href="{% url 'def_detail' defect.defect_id %}"><p>{{defect.trunc_title}}</p></a></div>    
                 <div class="col-2"><p>{{ defect.reported_on }}</p></div>
                 <div class="col-2"><p>{{ defect.author }}</p></div>
             </div>
@@ -41,14 +46,14 @@
     </div>
     
 </div>
-
+<br>
 <div class="container-lg">
     <div class="row">
         <div class="col">
-            <h2>Recent Updates</h2>
+            <h2 class="text-center">Recent Updates</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row border border-secondary rounded bg-white">
         <div class="col-2">
             <p>defect</p>
         </div>
@@ -65,12 +70,13 @@
             <p>logged by</p>
         </div>
     </div>
-    <div class="row">
+    <br>
+    <div class="row border border-secondary rounded bg-white">
         <div class="col">
             {% for update in updates %}
-            <div class="row">
+            <div class="row border border-top border-bottom">
             
-                <div class="col-2"><p><a href="{% url 'def_detail' update.defect.defect_id %}">{{ update.defect.trunc_title }}</a></p></div>
+                <div class="col-2"><p><a class="text-dark" href="{% url 'def_detail' update.defect.defect_id %}">{{ update.defect.trunc_title }}</a></p></div>
                 <div class="col-1">
                     {% if "placeholder" in update.image_url.url %}
 
@@ -78,7 +84,7 @@
                     <a href="{{ update.image_url.url }}" target="_BLANK"><p><i class="fa-solid fa-image"></i></p></a>
                     {% endif %}
                 </div>
-                <div class="col-6"><a href="{% url 'def_detail' update.defect.defect_id %}#update_{{ update.update_id }}"><p>{{update.excerpt}}</p></a></div>    
+                <div class="col-6"><a class="text-dark" href="{% url 'def_detail' update.defect.defect_id %}#update_{{ update.update_id }}"><p>{{update.excerpt}}</p></a></div>    
                 <div class="col-2"><p>{{ update.created_on }}</p></div>
                 <div class="col-1"><p>{{ update.author }}</p></div>
             </div>
@@ -91,7 +97,9 @@
 <div class="container-lg">
 <div class="row">
     <div class="col">
-        <a href="{% url 'log_def' %}"><h2>Log New Defect</h2></a>
+        <br>
+        <a href="{% url 'log_def' %}"><h2 class="text-center">Log New Defect</h2></a>
+        <br>
     </div>
 </div>
 </div>
