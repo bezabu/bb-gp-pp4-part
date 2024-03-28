@@ -86,13 +86,13 @@
             
             <div class="row border-top border-bottom">
             
-                <div class="col px-0 py-1"><p class="m-auto"><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
+                <div class="col pl-1 pr-0 py-1"><p class="m-auto"><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
                 <div class="col px-0 py-1"><p class="m-auto">{{ defect.updates.count }}</p></div>
                 <div class="col-3 px-0 py-1"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.trunc_title}}</p></a></div>   
                 <div class="col-3 px-0 py-1"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.excerpt}}</p></a></div>   
                 <div class="col px-0 py-1"><p class="text-truncate m-auto">{{defect.reported_on|date:"d/m/Y"}}</p></div>
                 <div class="col-1 px-0 py-1"><p class="text-truncate m-auto">{{defect.author}}</p></div>
-                <div class="col px-0 py-1"><p class="text-truncate m-auto">
+                <div class="col px-0 py-1"><p class="text-truncate ml-auto">
                     {% if defect.status %}
                     <i class="fa-solid fa-circle-check"></i>
                     {% else %}
