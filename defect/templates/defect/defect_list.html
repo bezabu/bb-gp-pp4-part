@@ -96,22 +96,24 @@
         </div>
     </div>
     <div class="row">
-    <!-- pagination -->
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            {% if defects.has_previous %}
-          <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.previous_page_number %}">Previous</a></li>
-          {% endif %}
+        <div class="col">
+        <!-- pagination -->
+            <nav class="pagination-nav" aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if defects.has_previous %}
+                    <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.previous_page_number %}">Previous</a></li>
+                    {% endif %}
 
-          {% for num in defects.paginator.page_range %}
-          <li class="page-item"><a class="page-link" href="{% url 'def_list' num %}">{{ num }}</a></li>
-            {% endfor %}
+                    {% for num in defects.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="{% url 'def_list' num %}">{{ num }}</a></li>
+                    {% endfor %}
 
-            {% if defects.has_next %}
-          <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.next_page_number %}">Next</a></li>
-          {% endif %}
-        </ul>
-      </nav>
+                    {% if defects.has_next %}
+                    <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.next_page_number %}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </div>
     
 </div>
