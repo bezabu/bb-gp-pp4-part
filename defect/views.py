@@ -22,6 +22,7 @@ def defect_list(request, page=1):
     category_is = request.GET.get('category')
     status_is = request.GET.get('status')
     author_is = request.GET.get('author')
+    sort_by = request.GET.get('sort_by')
 
     if title_contains != '' and title_contains is not None:
         defects = defects.filter(title__icontains=title_contains)
@@ -33,7 +34,11 @@ def defect_list(request, page=1):
         defects = defects.filter(status=status_is)
     if author_is !='' and author_is !='all' and author_is is not None:
         defects = defects.filter(author=author_is)
-        
+    if sort_by !='' and sort_by is not None:
+        if sort_by == 'asc':
+            defects = defects.order_by('-created_on')
+        if sort_by == 'dsc':
+            defects = defects.order_by('created_on')
     
     paginator = Paginator(defects, 15)
 
