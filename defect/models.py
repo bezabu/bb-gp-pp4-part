@@ -5,7 +5,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
-STATUS = ((0, "Open"), (1, "Resolved"), (2, "Sticky"))
+STATUS = ((0, "Open"), (1, "Resolved"))
 
 def get_null_category():
     return Category.objects.get_or_create(name='Null')
