@@ -27,7 +27,7 @@
 
         <div class="col-sm-3">
           {% if user.is_authenticated %}
-          <div class="card">
+          <div class="card d-none d-md-block d-lg-block d-xl-block">
             <div class="card-body">
               <h5 class="card-title">{% if user.is_authenticated %}{{ user }}{% endif %}</h5>
           

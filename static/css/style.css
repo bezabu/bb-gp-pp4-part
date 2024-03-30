@@ -39,23 +39,27 @@ a:hover {
     p {
         font-size: 1em;
     }
+
 }
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) {
     p {
         font-size: 0.9em;
     }
+
 }
 /* Small devices (landscape phones, 320px and up)*/
 @media (max-width: 420px) {
     p {
         font-size: 0.8em;
     }
+
 }
 @media (max-width: 320px) {
     p {
         font-size: 0.7em;
     }
+
 }
 /* Large devices (desktops, 992px and up)
 @media (min-width: 992px) { ... }
