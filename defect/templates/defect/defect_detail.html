@@ -4,28 +4,33 @@
 {% load cloudinary %}   
 {% block content %}
     <div class="container-lg">
-        
         <div class="row border border-secondary rounded bg-white mt-4">
-            <div class="col-1">
+        <div class="col">
+        <div class="row justify-content-center-md-center mt-4">
+            <div class="col-2">
                 <h2><i class="fa-solid {{defect.category.fa_string}}" style="color: {{ defect.category.colour }};"></i></h2>
             </div>
-            <div class="col-6">
-                <h2>{{ defect.title }}</h2>
+            <div class="col-10">
+                <h2 class="text-left">{{ defect.title }}</h2>
             </div>
-            <div class="col-5">
-                <p>Reported on {{ defect.reported_on }} by {{ defect.author }}</p>
+        </div>
+        <div class="row mb-0">
+            <div class="col">
+                <p class="text-right">Reported {{ defect.reported_on|date:"d/m/Y H:i" }} by {{ defect.author }}</p>
             </div>
+        </div>
+    </div>
         </div>
         
         <div class="row border border-secondary rounded bg-white mt-3">
-            <div class="col"> 
+            <div class="col my-4"> 
                 {% autoescape off %}
                 {{ defect.body }}
                 {% endautoescape %}
             </div>
         </div>
         
-        <div class="row border border-secondary rounded bg-white mt-3">
+        <div class="row mt-3">
             <div class="col"> 
                 <!-- images go here -->
                 <!-- images go here -->
@@ -33,42 +38,41 @@
             <p>No images.</p>
             {% else %}
             <a href="{{ defect.image_url.url }}" target="_BLANK">
-            <img width="300" class="img-fluid img-thumbnail" src="{{ defect.image_url.url }}"></a>
+            <img width="200" height="200" class="img-fluid img-thumbnail" src="{{ defect.image_url.url }}"></a>
             <!--{% cloudinary defect.image_url format="jpg" width=120 height=80 crop="fill" %}-->
             {% endif %}
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-4">
             <div class="col">
                 <h3>Updates</h3>
+                <a class="btn btn-secondary" href="#update_{{update_latest.update_id}}">Latest</a>
             </div>
             <br>
         </div>
         {% for update in updates %}
-        <div class="row border border-secondary rounded bg-white mt-4">
-            
-            <div class="col-3">
-                {{ update.created_on }}
-            </div>
-            <div class="col-1">
-                {{ update.author }}
-            </div>
-            
-        </div>
-        
-        <div class="row border border-secondary rounded bg-white mt-3" id="update_{{ update.update_id }}">
+        <div class="row border border-secondary rounded bg-white mt-4" id="update_{{update.update_id}}">
             <div class="col">
-                {{ update.body }}
+                <div class="row">
+                    <div class="col border">
+                        <p class="text-right">{{ update.created_on|date:"d/m/Y H:i" }} by {{ update.author }}</p>
+                    </div>
+                </div>
+                <div class="row" id="update_{{ update.update_id }}">
+                    <div class="col border mb-4 mt-2">
+                    {{ update.body }}
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="row border border-secondary rounded bg-white mt-3">
+
+        <div class="row mt-3">
             <!-- images go here -->
             {% if "placeholder" in update.image_url.url %}
             <p>No images.</p>
             {% else %}
             <a href="{{ update.image_url.url }}" target="_BLANK">
-            <img class="img-fluid img-thumbnail" src="{{ update.image_url.url }}"></a>
+            <img width="200" height="200" class="img-fluid img-thumbnail" src="{{ update.image_url.url }}"></a>
             {% endif %}
         </div>
         <div class="row mt-3">
@@ -80,7 +84,7 @@
             </div>
         </div>
         <br>
-
+        <hr>
         {% endfor %}
         <div class="row">
             <div class="col">

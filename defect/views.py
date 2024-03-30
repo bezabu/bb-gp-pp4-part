@@ -89,6 +89,7 @@ def defect_detail(request, defect_id):
     defect = get_object_or_404(Defect.objects.all(), defect_id=defect_id)
     updates = defect.updates.all().order_by("created_on")
     update_count = defect.updates.count()
+    update_latest = updates.all().last()
     if request.method == "POST":
         #update_form = UpdateForm(data=request.POST)
         update_form = UpdateForm(request.POST, request.FILES)
@@ -120,6 +121,7 @@ def defect_detail(request, defect_id):
             'updates': updates,
             'update_count': update_count,
             'update_form': update_form,
+            'update_latest': update_latest,
         },)
 
 def update_edit(request, defect_id, update_id):
