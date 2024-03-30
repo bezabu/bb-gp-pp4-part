@@ -35,7 +35,7 @@
       </div>
           {% else %}
           
-              
+              {% if request.path != login_url %}
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">{% if user.is_authenticated %}You are logged in as {{ user }}.{% else %}You are not logged in{% endif %}</h5>
@@ -43,6 +43,7 @@
               <a href="{% url 'account_signup' %}" class="btn btn-primary">Register</a>
                           </div>
           </div>
+              {% endif %}
               {% endif %}
             </div>
           </div>
@@ -101,6 +102,10 @@
         </div>
       </div>
     </div>
+    {% elif not user.is_authenticatedor and request.path == login_url %}
+    {% block login %}
+    <!-- Login Goes here -->
+    {% endblock login %}
     {% else %}
     <div class="container-sm">
       <div class="row">
