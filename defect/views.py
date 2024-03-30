@@ -23,7 +23,10 @@ def defect_list(request, page=1):
     status_is = request.GET.get('status')
     author_is = request.GET.get('author')
     sort_by = request.GET.get('sort_by')
-
+    if title_contains is None:
+        title_contains = ''
+    if body_contains is None:
+        body_contains = ''
     if title_contains != '' and title_contains is not None:
         defects = defects.filter(title__icontains=title_contains)
     if body_contains != '' and body_contains is not None:
@@ -47,10 +50,26 @@ def defect_list(request, page=1):
     except EmptyPage:
         defects = paginator.page(paginator.num_pages)
 
+    if category_is !='all' and category_is is not None:
+        category_is = int(category_is)
+    if status_is !='all' and status_is is not None:
+        status_is = int(status_is)
+    if author_is !='all' and author_is is not None:
+        author_is = int(author_is)
+    
+    prefill = {
+        'category_is': category_is,
+        'title_contains': title_contains,
+        'body_contains': body_contains,
+        'author_is': author_is,
+        'status_is': status_is,
+    }
+
     context = {
         'defects': defects,
         'categories': categories,
-        'users': users
+        'users': users,
+        'prefill': prefill,
     }
     return render(
         request, 'defect/defect_list.html', context)
