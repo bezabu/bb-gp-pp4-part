@@ -11,7 +11,7 @@
     <div class="row border border-secondary rounded bg-white -mt-3">
         <div class="col">
             {% for category in categories %}
-            <div class="row border-top border-bottom">
+            <div class="row mt-2">
                 <div class="col-2"><p><i class="fa-solid {{category.fa_string}} fa-icon-lg" style="color:{{ category.colour }};"></i></p></div> 
                 <div class="col-3"><p>{{category.name}}</p></div>
                 <div class="col-7"><p>{{category.description}}</p></div>
@@ -30,7 +30,9 @@
             <form id="CategoryForm" method="post" style="margin-top: 1.3em;">
                 {{ category_form | crispy }}
                 {% csrf_token %}
-                <button id="submitButton" type="submit" class="btn btn-signup btn-lg mb-5">Submit</button>
+                <div class="col text-center">
+                <button id="submitButton" type="submit" class="btn btn-primary btn-lg mb-5">Submit</button>
+            </div>
                 </form>
         </div>
     </div>

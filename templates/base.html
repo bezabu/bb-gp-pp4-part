@@ -69,7 +69,7 @@
           <a class="nav-link{% if request.path == dash_url %} active{% endif %} {% if user.is_authenticated is false %}disabled{% endif %}" href="{% url 'dash_list' %}">Home <span class="sr-only">(current)</span></a>
           <a class="nav-link{% if request.path == def_url %} active{% endif %}" href="{% url 'def_list' 1 %}">Defects</a>
           <a class="nav-link{% if request.path == cat_url %} active{% endif %}" href="{% url 'cat_list' %}">Categories</a>
-          <a class="nav-link{% if request.path == user_url %} active{% endif %} {% if 'auth.change_user' not in user.get_all_permissions %}disabled" aria-disabled="true{% endif %}" href="{% url 'user_list' %}">Users</a>
+          <a class="nav-link{% if request.path == user_url %} active{% endif %} {% if 'auth.change_user' not in user.get_all_permissions %}disabled" aria-disabled="true{% endif %}" href="./admin/auth/user">Users</a>
           <a class="nav-link{% if request.path == logout_url %} active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
         </div>
       </div>

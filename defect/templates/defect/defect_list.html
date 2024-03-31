@@ -15,7 +15,7 @@
                         <p class="text-truncate m-auto">Toggle Search Options</p>
                       </button>
                 </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
 
         <!-- filtering form -->
@@ -23,8 +23,8 @@
             <!-- form, first row-->
             <div class="row border border-secondary rounded bg-white py-1">
                 <div class="col-sm-1">
-                    <label for="category">Category</label>
-                    <select class="form-control form-control-sm" id="category" name="category" aria-label="Select category">
+                    <label for="category" class="mb-0">Category</label>
+                    <select class="form-control form-control-sm mb-3" id="category" name="category" aria-label="Select category">
                         <option value="all">All</option>
                         {% for category in categories %}
                         {% if category.name != 'Null' %}
@@ -34,23 +34,23 @@
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <label for="title_contains">Title</label>
-                    <input class="form-control form-control-sm" type="search" id="title_contains" name="title_contains" aria-label="Search in title" placeholder="search in title" value="{{ prefill.title_contains }}">
+                    <label for="title_contains" class="mb-0">Title</label>
+                    <input class="form-control form-control-sm mb-3" type="search" id="title_contains" name="title_contains" aria-label="Search in title" placeholder="search in title" value="{{ prefill.title_contains }}">
                 </div>
                 <div class="col-sm-4">
-                    <label class="text-truncate" for="body_contains">Body</label>
-                    <input class="form-control form-control-sm" type="search" id="body_contains" name="body_contains" aria-label="Search in body" placeholder="search in body" value="{{ prefill.body_contains }}">
+                    <label for="body_contains" class="mb-0">Body</label>
+                    <input class="form-control form-control-sm mb-3" type="search" id="body_contains" name="body_contains" aria-label="Search in body" placeholder="search in body" value="{{ prefill.body_contains }}">
                 </div>
                 <div class="col-sm">
-                    <label for="date_sort">Sort by</label>
-                    <select class="form-control form-control-sm" id="date_sort" name="date_sort" aria-label="sort date">
+                    <label for="date_sort" class="mb-0">Sort by</label>
+                    <select class="form-control form-control-sm mb-3" id="date_sort" name="date_sort" aria-label="sort date">
                         <option value="dsc" {% if prefill.sort_by == 'dsc' %} selected {% endif %}>Descending</option>
                         <option value="asc" {% if prefill.sort_by == 'asc' %} selected {% endif %}>Ascending</option>
                     </select>
                 </div>
                 <div class="col-sm-1">
-                    <label for="author">Author</label>
-                    <select class="form-control form-control-sm" id="author" name="author" aria-label="Select author">
+                    <label for="author" class="mb-0">Author</label>
+                    <select class="form-control form-control-sm mb-3" id="author" name="author" aria-label="Select author">
                         <option value="all">All</option>
                         {% for user in users %}
                         <option value="{{ user.id }}" {% if prefill.author_is == user.id %} selected {% endif %}>{{ user }}</option>
@@ -58,8 +58,8 @@
                     </select>
                 </div>
                 <div class="col-sm">
-                    <label class="text-truncate" for="status">Open/Resolved</label>
-                    <select class="form-control form-control-sm" id="status" name="status" aria-label="Select status filter">
+                    <label class="mb-0" for="status">Open/Resolved</label>
+                    <select class="form-control form-control-sm mb-3" id="status" name="status" aria-label="Select status filter">
                         <option value="all" {% if prefill.status_is == 'all' %} selected {% endif %}>Any</option>
                         <option value=0 {% if prefill.status_is == 0 %} selected {% endif %}>Open</option>
                         <option value=1 {% if prefill.status_is == 1 %} selected {% endif %}>Resolved</option>
@@ -95,40 +95,44 @@
 
         <br>
         <!-- column headers -->
-        <div class="row border border-secondary rounded bg-white">
-            <div class="col px-0 py-1">
+        <div class="row">
+            <div class="col-1 px-0 py-1">
                 <p><i class="fa-solid fa-flag"></i></p>
             </div>
-            <div class="col px-0 py-1">
+            <div class="col-1 px-0 py-1">
                 <p><i class="fa-solid fa-comment"></i></p>
             </div>
-            <div class="col-3 px-0 py-1">
+            <div class="col-6 px-0 py-1 d-block d-sm-none">
                 <p class="text-truncate">Title</p>
             </div>
-            <div class="col-3 px-0 py-1">
+            <div class="col-3 px-0 py-1 d-none d-sm-block">
+                <p class="text-truncate">Title</p>
+            </div>
+            <div class="col-3 px-0 py-1 d-none d-sm-block">
                 <p class="text-truncate">Body</p>
             </div>
-            <div class="col px-0 py-1">
-                <p class="text-truncate">Date</p>
+            <div class="col-2 px-0 py-1">
+                <p><i class="fa-solid fa-calendar-day"></i></p>
             </div>
             <div class="col-1 px-0 py-1">
-                <p class="text-truncate">Author</p>
+                <p><i class="fa-solid fa-user"></i></p>
             </div>
             <div class="col-1 px-0 py-1">
-                <p class="text-truncate">Resolved</p>
+                <p><i class="fa-solid fa-circle-check"></i></p>
             </div>
         </div>
-        <br>
+
         <!-- data -->
         <div class="row border border-secondary rounded bg-white">
             <div class="col">
             {% for defect in defects %}
                 <div class="row border-top border-bottom">
-                    <div class="col pl-1 pr-0 py-1"><p class="m-auto"><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
-                    <div class="col px-0 py-1"><p class="m-auto">{{ defect.updates.count }}</p></div>
-                    <div class="col-3 px-0 py-1"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.trunc_title}}</p></a></div>   
-                    <div class="col-3 px-0 py-1"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.excerpt}}</p></a></div>   
-                    <div class="col px-0 py-1"><p class="text-truncate m-auto">{{defect.reported_on|date:"d/m/Y"}}</p></div>
+                    <div class="col-1 pl-1 pr-0 py-1"><p class="m-auto"><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
+                    <div class="col-1 px-0 py-1"><p class="m-auto">{{ defect.updates.count }}</p></div>
+                    <div class="col px-0 py-1 d-block d-sm-none text-truncate"><a class="text-dark" href="{% url 'def_detail' defect.defect_id %}"><p class="">{{defect.trunc_title}}</p></a></div>  
+                    <div class="col px-0 py-1 d-none d-sm-block text-truncate"><a class="text-dark" href="{% url 'def_detail' defect.defect_id %}"><p class="">{{defect.trunc_title}}</p></a></div> 
+                    <div class="col-3 px-0 py-1 d-none d-sm-block"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.excerpt}}</p></a></div>   
+                    <div class="col-2 px-0 py-1"><p class="text-truncate m-auto">{{defect.reported_on|date:"d/m/Y"}}</p></div>
                     <div class="col-1 px-0 py-1"><p class="text-truncate m-auto">{{defect.author}}</p></div>
                     <div class="col-1 px-0 py-1 px-auto">
                         <p class="text-truncate ml-auto">
