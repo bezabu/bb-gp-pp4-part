@@ -23,7 +23,7 @@
         </div>
         
         <div class="row border border-secondary rounded bg-white mt-3">
-            <div class="col my-4"> 
+            <div class="col my-4">
                 {% autoescape off %}
                 {{ defect.body }}
                 {% endautoescape %}
@@ -56,8 +56,11 @@
         <div class="row border border-secondary rounded bg-white mt-4" id="update_{{update.update_id}}">
             <div class="col">
                 <div class="row">
-                    <div class="col">
+                    <div class="col mx-0">
                         <p class="text-right">{{ update.created_on|date:"d/m/Y H:i" }} by {{ update.author }}</p>
+                    </div>
+                    <div class="col-1 mx-1">
+                        <p class="text-right">{% if update.resolution %}<i class="fa-solid fa-circle-check"></i>{% else %}<i class="fa-regular fa-circle"></i>{% endif %}</p>
                     </div>
                 </div>
                 <div class="row" id="update_{{ update.update_id }}">
@@ -88,7 +91,7 @@
                 </div>
             </div>
         </div>
-
+</div>
         
         
         <br>

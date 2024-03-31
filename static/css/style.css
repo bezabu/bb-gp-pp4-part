@@ -1,5 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+body {
+    font-family: "Poppins", sans-serif;
+}
 h1 {
-    color: red;
+    color: black;
 }
 
 .fa-icon-lg {
@@ -24,7 +32,7 @@ a:hover {
 .bb-footer {
 
     height: 100px;
-    background-color: aqua;
+    background-color: grey;
 }
 li {
     list-style-type: none;
