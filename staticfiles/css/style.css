@@ -1,8 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Poppins", sans-serif;
+}
 h1 {
-    color: red;
+    color: black;
 }
 
 .fa-icon-lg {
     font-size: xx-large;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
+a:link {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: underline;
+}
 
+.pagination-nav {
+    margin: auto;
+}
+
+.bb-footer {
+
+    height: 100px;
+    background-color: grey;
+}
+li {
+    list-style-type: none;
+}
+
+/*
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+*/
+
+
+
+/* Medium devices (tablets, 768px and up)*/
+@media (max-width: 768px) {
+    p {
+        font-size: 1em;
+    }
+
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (max-width: 576px) {
+    p {
+        font-size: 0.9em;
+    }
+
+}
+/* Small devices (landscape phones, 320px and up)*/
+@media (max-width: 420px) {
+    p {
+        font-size: 0.8em;
+    }
+
+}
+@media (max-width: 320px) {
+    p {
+        font-size: 0.7em;
+    }
+
+}
+/* Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+/* Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+*/

@@ -1,14 +1,14 @@
+import { Modal } from 'bootstrap'
+
 const editButtons = document.getElementsByClassName("btn-edit");
 const updateText = document.getElementById("id_body");
 const updateForm = document.getElementById("updateForm");
 const submitButton = document.getElementById("submitButton");
 
+//const deleteModal = document.getElementById("deleteModal");
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
-
-const approveButtons = document.getElementsByClassName("btn-approve");
-
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {

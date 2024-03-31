@@ -1,46 +1,113 @@
-{% extends "account/base.html" %}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Poppins", sans-serif;
+}
+h1 {
+    color: black;
+}
 
-{% load i18n %}
-{% load account socialaccount %}
+.fa-icon-lg {
+    font-size: xx-large;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:link {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: underline;
+}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock head_title %}
+.pagination-nav {
+    margin: auto;
+}
 
-{% block content %}
+.bb-footer {
 
-<h1>{% trans "Sign In" %}</h1>
+    height: 100px;
+    background-color: grey;
+}
+li {
+    list-style-type: none;
+}
 
-{% get_providers as socialaccount_providers %}
+/*
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+*/
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
-<div class="socialaccount_ballot">
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+/* Medium devices (tablets, 768px and up)*/
+@media (max-width: 768px) {
+    p {
+        font-size: 1em;
+    }
 
-  <div class="login-or">{% trans 'or' %}</div>
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (max-width: 576px) {
+    p {
+        font-size: 0.9em;
+    }
 
-</div>
+}
+/* Small devices (landscape phones, 320px and up)*/
+@media (max-width: 420px) {
+    p {
+        font-size: 0.8em;
+    }
 
-{% include "socialaccount/snippets/login_extra.html" %}
+}
+@media (max-width: 320px) {
+    p {
+        font-size: 0.7em;
+    }
 
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
+}
+/* Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
 
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
+/* Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+*/
 
-{% endblock content %}
+
+
+
+const editButtons = document.getElementsByClassName("btn-edit");
+const updateText = document.getElementById("id_body");
+const updateForm = document.getElementById("updateForm");
+const submitButton = document.getElementById("submitButton");
+
+const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+const deleteButtons = document.getElementsByClassName("btn-delete");
+const deleteConfirm = document.getElementById("deleteConfirm");
+
+const approveButtons = document.getElementsByClassName("btn-approve");
+
+
+for (let button of editButtons) {
+    button.addEventListener("click", (e) => {
+        let updateId = e.target.getAttribute("update_id");
+        let updateContent = document.getElementById(`update_${updateId}`).innerText;
+        updateText.value = updateContent;
+        submitButton.innerText = "Save";
+        updateForm.setAttribute("action", `edit_update/${updateId}`);
+    });
+}
+
+for (let button of deleteButtons) {
+    button.addEventListener("click", (e) => {
+        let updateId = e.target.getAttribute("update_id");
+        deleteConfirm.href = `delete_update/${updateId}`;
+        deleteModal.show();
+    });
+}
+
