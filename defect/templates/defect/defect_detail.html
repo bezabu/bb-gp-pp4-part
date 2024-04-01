@@ -53,7 +53,7 @@
             <br>
         </div>
         {% for update in updates %}
-        <div class="row border border-secondary rounded bg-white mt-4" id="update_{{update.update_id}}">
+        <div class="row border border-secondary rounded bg-white mt-4">
             update_{{ update.update_id }}
             <div class="col">
                 <div class="row">
@@ -86,7 +86,7 @@
                 <div class="row mt-3">
                     <div class="col text-right">
                         {% if user.is_authenticated and update.author == user %}
-                        <button class="btn btn-secondary btn-edit" defect_id="{{ defect.defect_id }}" update_id="{{ update.update_id }}">Edit</button>
+                        <button class="btn btn-edit btn-secondary" defect_id="{{ defect.defect_id }}" update_id="{{ update.update_id }}">Edit</button>
                         <button class="btn btn-delete btn-danger mb-4" defect_id="{{ defect.defect_id }}" update_id="{{ update.update_id }}">Delete</button>
                         {% endif %}
                     </div>
@@ -102,7 +102,7 @@
                 <div class="col">
                     {% if user.is_authenticated and perms.defect.add_update %}
                     <h2>New Update</h2>
-                    <form id="UpdateForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
+                    <form id="updateForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
                     {{ update_form | crispy }}
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-primary btn-signup btn-lg">Submit</button>

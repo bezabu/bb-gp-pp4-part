@@ -141,7 +141,7 @@ def update_edit(request, defect_id, update_id):
         else:
             messages.add_message(request, messages.ERROR, 'Error editing update!')
     
-    return HttpResponseRedirect(revese('def_detail', args=[defect_id]))
+    return HttpResponseRedirect(reverse('def_detail', args=[defect_id]))
 
 def update_delete(request, defect_id, update_id):
     """

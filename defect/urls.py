@@ -9,6 +9,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dash_list'),
     path('log_defect/', views.log_defect, name='log_def'),
     path('<int:defect_id>/', views.defect_detail, name='def_detail'),
-    path('<int:defect_id>/edit_update/<str:update_id>', views.update_edit, name='update_edit'),
-    path('<int:defect_id>/delete_update/<str:update_id>', views.update_delete, name='update_delete'),
+    path('<int:defect_id>/edit_update/<str:update_id>', views.update_edit, name='upd_edit'),
+    path('<int:defect_id>/delete_update/<str:update_id>', views.update_delete, name='upd_delete'),
 ]
