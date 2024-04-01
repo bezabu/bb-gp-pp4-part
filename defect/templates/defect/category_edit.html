@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load cloudinary %}   
+{% block content %}
+{% if user.is_authenticated and perms.defect.view_defect and perms.defect.view_update %}
+
+{{ category }}
+{{ category.id }}
+{{ category.name }}
+
+
+
+{% endblock content %}

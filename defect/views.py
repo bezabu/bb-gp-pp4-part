@@ -108,7 +108,7 @@ def defect_detail(request, defect_id):
             update.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Update added'
+                'Update submitted'
             )
 
     update_form = UpdateForm()
@@ -130,7 +130,7 @@ def update_edit(request, defect_id, update_id):
     """
     if request.method == 'POST':
         defect = get_object_or_404(Defect, defect_id=defect_id)
-        update = get_object_or_404(Update, update_id=update_id)
+        update = get_object_or_404(Update, pk=update_id)
         update_form = UpdateForm(data=request.POST, instance=update)
 
         if update_form.is_valid() and update.author == request.user:
@@ -148,7 +148,7 @@ def update_delete(request, defect_id, update_id):
 
     """
     defect = get_object_or_404(Defect, defect_id=defect_id)
-    update = get_object_or_404(Update, update_id=update_id)
+    update = get_object_or_404(Update, pk=update_id)
 
     if update.author == request.user:
         update.delete()
@@ -225,6 +225,7 @@ def category_list(request):
             'category_form': category_form,
         },
     )
+
 
 def user_list(request):
     """
