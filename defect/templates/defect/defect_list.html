@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% if user.is_authenticated and perms.defect.view_defect and perms.defect.view_update %}
     <div class="container-lg">
         <div class="row">
             <div class="col">
@@ -168,5 +169,5 @@
                 </div>
             </div>
         </div>
-
+{% endif %}
 {% endblock %}

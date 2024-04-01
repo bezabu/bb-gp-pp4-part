@@ -2,6 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% if user.is_authenticated and perms.defect.view_defect and perms.defect.view_update %}
 <div class="container-lg">
     <div class="row mt-3">
         <div class="col">
@@ -42,5 +43,5 @@
         
     
    
-
+{% endif %}
 {% endblock %}

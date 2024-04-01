@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 {% load cloudinary %}   
 {% block content %}
+{% if user.is_authenticated and perms.defect.view_defect and perms.defect.view_update %}
     <div class="container-lg">
         <div class="row border border-secondary rounded bg-white mt-4">
         <div class="col">
@@ -143,7 +144,7 @@
   </div>
 </div>
 
-
+{% endif %}
 {% endblock content %}
 
 {% block extras %}
