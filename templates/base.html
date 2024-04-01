@@ -6,7 +6,7 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
-
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,8 +40,16 @@
         </div>
         <div class="col-9 d-block d-sm-none">
           <span class="col text-center">
+            
             <i class="fa-solid fa-user"></i>
-            <span class="badge badge-dark m-0">{{ user }}</span>
+            <div class="dropdown">
+              <span class="badge badge-dark dropdown-toggle m-0" type="button" data-toggle="dropdown" aria-expanded="false">
+                {{ user }}
+              </span>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a>
+              </div>
+            </div>
           </span>
         </div>
         {% else %}
@@ -110,10 +118,11 @@
       <div class="row text-center">
         <div class="col">
           <p>Your account is awaiting approval. Please contact your administrator.</p>
+          <a href="{% url 'account_logout' %}" class="btn btn-primary">Log out</a>
         </div>
       </div>
     </div>
-    {% elif not user.is_authenticatedor and request.path == login_url or request.path == signup_url %}
+    {% elif not user.is_authenticatedor and request.path == login_url or request.path == signup_url or request.path == logout_url %}
     {% block login %}
     <!-- Login Goes here -->
     {% endblock login %}
