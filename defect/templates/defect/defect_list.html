@@ -13,86 +13,76 @@
             <div class="card border-0 bg-light row m-auto">
                 <div class="card-title m-auto" id="headingOne">
                     <button class="btn btn-secondary btn-sm m-auto px-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <p class="text-truncate m-auto">Toggle Search Options</p>
+                        <span class="text-truncate m-auto">Toggle Search Options</span>
                       </button>
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
 
-        <!-- filtering form -->
-        <form method="GET" action=".">
-            <!-- form, first row-->
-            <div class="row border border-secondary rounded bg-white py-1">
-                <div class="col-sm-1">
-                    <label for="category" class="mb-0">Category</label>
-                    <select class="form-control form-control-sm mb-3" id="category" name="category" aria-label="Select category">
-                        <option value="all">All</option>
-                        {% for category in categories %}
-                        {% if category.name != 'Null' %}
-                        <option value="{{ category.id }}" {% if category.id == prefill.category_is %} selected {% endif %}>{{ category.name }}</option>
-                        {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-sm-3">
-                    <label for="title_contains" class="mb-0">Title</label>
-                    <input class="form-control form-control-sm mb-3" type="search" id="title_contains" name="title_contains" aria-label="Search in title" placeholder="search in title" value="{{ prefill.title_contains }}">
-                </div>
-                <div class="col-sm-4">
-                    <label for="body_contains" class="mb-0">Body</label>
-                    <input class="form-control form-control-sm mb-3" type="search" id="body_contains" name="body_contains" aria-label="Search in body" placeholder="search in body" value="{{ prefill.body_contains }}">
-                </div>
-                <div class="col-sm">
-                    <label for="date_sort" class="mb-0">Sort by</label>
-                    <select class="form-control form-control-sm mb-3" id="date_sort" name="date_sort" aria-label="sort date">
-                        <option value="dsc" {% if prefill.sort_by == 'dsc' %} selected {% endif %}>Descending</option>
-                        <option value="asc" {% if prefill.sort_by == 'asc' %} selected {% endif %}>Ascending</option>
-                    </select>
-                </div>
-                <div class="col-sm-1">
-                    <label for="author" class="mb-0">Author</label>
-                    <select class="form-control form-control-sm mb-3" id="author" name="author" aria-label="Select author">
-                        <option value="all">All</option>
-                        {% for user in users %}
-                        <option value="{{ user.id }}" {% if prefill.author_is == user.id %} selected {% endif %}>{{ user }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-sm">
-                    <label class="mb-0" for="status">Open/Resolved</label>
-                    <select class="form-control form-control-sm mb-3" id="status" name="status" aria-label="Select status filter">
-                        <option value="all" {% if prefill.status_is == 'all' %} selected {% endif %}>Any</option>
-                        <option value=0 {% if prefill.status_is == 0 %} selected {% endif %}>Open</option>
-                        <option value=1 {% if prefill.status_is == 1 %} selected {% endif %}>Resolved</option>
-                    </select>
-                </div>
-            </div>
-            <!-- form, second row-->
-            <div class="row border border-secondary rounded bg-white px-auto py-2 my-1">
-                <div class="col-sm"></div>
-                <div class="col-sm-1 btn-group">
-                    <button id="search" type="submit" class="btn btn-primary btn-sm mx-auto my-2">Search</button>
-                </div>
-            </form>
-            <div class="col-sm btn-group"></div>
-            <div class="col-sm-1">
-                <form action="{% url 'def_list' 1 %}" class="text-center">
-                    
-
-                    <input class="btn btn-secondary btn-sm my-2 px-auto" type="submit" value="Reset" />
-
-                
+                    <!-- filtering form -->
+                    <form method="GET" action=".">
+                    <!-- form, first row-->
+                    <div class="row border border-secondary rounded bg-white py-1">
+                        <div class="col-sm-1">
+                            <label for="category" class="mb-0">Category</label>
+                            <select class="form-control form-control-sm mb-3" id="category" name="category" aria-label="Select category">
+                                <option value="all">All</option>
+                                {% for category in categories %}
+                                {% if category.name != 'Null' %}
+                                <option value="{{ category.id }}" {% if category.id == prefill.category_is %} selected {% endif %}>{{ category.name }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="title_contains" class="mb-0">Title</label>
+                            <input class="form-control form-control-sm mb-3" type="search" id="title_contains" name="title_contains" aria-label="Search in title" placeholder="search in title" value="{{ prefill.title_contains }}">
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="body_contains" class="mb-0">Body</label>
+                            <input class="form-control form-control-sm mb-3" type="search" id="body_contains" name="body_contains" aria-label="Search in body" placeholder="search in body" value="{{ prefill.body_contains }}">
+                        </div>
+                        <div class="col-sm">
+                            <label for="date_sort" class="mb-0">Sort by</label>
+                            <select class="form-control form-control-sm mb-3" id="date_sort" name="date_sort" aria-label="sort date">
+                                <option value="dsc" {% if prefill.sort_by == 'dsc' %} selected {% endif %}>Descending</option>
+                                <option value="asc" {% if prefill.sort_by == 'asc' %} selected {% endif %}>Ascending</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="author" class="mb-0">Author</label>
+                            <select class="form-control form-control-sm mb-3" id="author" name="author" aria-label="Select author">
+                                <option value="all">All</option>
+                                {% for user in users %}
+                                <option value="{{ user.id }}" {% if prefill.author_is == user.id %} selected {% endif %}>{{ user }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                            <label class="mb-0" for="status">Open/Resolved</label>
+                            <select class="form-control form-control-sm mb-3" id="status" name="status" aria-label="Select status filter">
+                                <option value="all" {% if prefill.status_is == 'all' %} selected {% endif %}>Any</option>
+                                <option value=0 {% if prefill.status_is == 0 %} selected {% endif %}>Open</option>
+                                <option value=1 {% if prefill.status_is == 1 %} selected {% endif %}>Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- form, second row-->
+                    <div class="row border border-secondary rounded bg-white px-auto py-2 my-1">
+                        <div class="col-sm text-center">
+                            <button id="search" type="submit" class="btn btn-primary btn-sm mx-2 my-2">Search</button>
+                        </div>
+                        <div class="col-sm text-center">
+                            <a href="{% url 'def_list' 1 %}" class="btn btn-secondary btn-sm mx-2 my-2">Reset</a>
+                        </div>
+                    </div>   
                 </form>
             </div>
-            <div class="col-sm"></div>
         </div>
-        
-    </div>
-</div>
 
 
     </div>
-    </div>
+    
 
         <br>
         <!-- column headers -->
