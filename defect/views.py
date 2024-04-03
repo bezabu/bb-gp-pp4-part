@@ -129,8 +129,9 @@ def update_edit(request, defect_id, update_id):
     view to edit updates
     """
     if request.method == 'POST':
-        defect = get_object_or_404(Defect, defect_id=defect_id)
+        #defect = get_object_or_404(Defect, defect_id=defect_id)
         update = get_object_or_404(Update, pk=update_id)
+        defect = update.defect
         update_form = UpdateForm(data=request.POST, instance=update)
 
         if update_form.is_valid() and update.author == request.user:

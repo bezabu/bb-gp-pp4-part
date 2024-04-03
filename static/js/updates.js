@@ -24,7 +24,8 @@ for (let button of editButtons) {
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        let updateId = e.target.getAttribute("update_id");
+        let updateId = e.target.getAttribute("data-update_id");
+        let defectId = e.target.getAttribute("data-defect_id");
         //updateId = Number(updateId);
         let updateContent = document.getElementById(`update_${updateId}`).innerText;
         updateText.value = updateContent;
@@ -35,7 +36,8 @@ for (let button of editButtons) {
 
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let updateId = e.target.getAttribute("update_id");;
+        let updateId = e.target.getAttribute("data-update_id");;
+        console.log(updateId);
         deleteConfirm.href = `delete_update/${updateId}`;
         deleteModal.show();
     });
