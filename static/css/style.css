@@ -7,7 +7,9 @@ body {
 }
 h1 {
     color: black;
+    text-decoration: none;
 }
+
 
 .fa-icon-lg {
     font-size: xx-large;
@@ -23,7 +25,9 @@ a:link {
 a:hover {
     text-decoration: underline;
 }
-
+h1:hover {
+    text-decoration: none;
+}
 .pagination-nav {
     margin: auto;
 }
