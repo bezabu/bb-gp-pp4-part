@@ -2,88 +2,82 @@
 {% load static %}
 {% block content %}
 {% if user.is_authenticated and perms.defect.view_defect and perms.defect.view_update %}
-    <div class="container-lg">
-        <div class="row">
-            <div class="col">
-                <h2 class="text-center">Defect List</h2>
-            </div>
+<div class="container-lg">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">Defect List</h2>
         </div>
-
-        <div id="accordion">
-            <div class="card border-0 bg-light row m-auto">
-                <div class="card-title m-auto" id="headingOne">
-                    <button class="btn btn-secondary btn-sm m-auto px-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <span class="text-truncate m-auto">Toggle Search Options</span>
-                      </button>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-
+    </div>
+    <div id="accordion">
+        <div class="card border-0 bg-light row m-auto">
+            <div class="card-title m-auto" id="headingOne">
+                <button class="btn btn-secondary btn-sm m-auto px-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span class="text-truncate m-auto">Toggle Search Options</span>
+                </button>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
                     <!-- filtering form -->
                     <form method="GET" action=".">
-                    <!-- form, first row-->
-                    <div class="row border border-secondary rounded bg-white py-1">
-                        <div class="col-sm-1">
-                            <label for="category" class="mb-0">Category</label>
-                            <select class="form-control form-control-sm mb-3" id="category" name="category" aria-label="Select category">
-                                <option value="all">All</option>
-                                {% for category in categories %}
-                                {% if category.name != 'Null' %}
-                                <option value="{{ category.id }}" {% if category.id == prefill.category_is %} selected {% endif %}>{{ category.name }}</option>
-                                {% endif %}
-                                {% endfor %}
-                            </select>
+                        <!-- form, first row-->
+                        <div class="row border border-secondary rounded bg-white py-1">
+                            <div class="col-sm-1">
+                                <label for="category" class="mb-0">Category</label>
+                                <select class="form-control form-control-sm mb-3" id="category" name="category" aria-label="Select category">
+                                    <option value="all">All</option>
+                                    {% for category in categories %}
+                                    {% if category.name != 'Null' %}
+                                    <option value="{{ category.id }}" {% if category.id == prefill.category_is %} selected {% endif %}>{{ category.name }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="title_contains" class="mb-0">Title</label>
+                                <input class="form-control form-control-sm mb-3" type="search" id="title_contains" name="title_contains" aria-label="Search in title" placeholder="search in title" value="{{ prefill.title_contains }}">
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="body_contains" class="mb-0">Body</label>
+                                <input class="form-control form-control-sm mb-3" type="search" id="body_contains" name="body_contains" aria-label="Search in body" placeholder="search in body" value="{{ prefill.body_contains }}">
+                            </div>
+                            <div class="col-sm">
+                                <label for="date_sort" class="mb-0">Sort by</label>
+                                <select class="form-control form-control-sm mb-3" id="date_sort" name="date_sort" aria-label="sort date">
+                                    <option value="dsc" {% if prefill.sort_by == 'dsc' %} selected {% endif %}>Descending</option>
+                                    <option value="asc" {% if prefill.sort_by == 'asc' %} selected {% endif %}>Ascending</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-1">
+                                <label for="author" class="mb-0">Author</label>
+                                <select class="form-control form-control-sm mb-3" id="author" name="author" aria-label="Select author">
+                                    <option value="all">All</option>
+                                    {% for user in users %}
+                                    <option value="{{ user.id }}" {% if prefill.author_is == user.id %} selected {% endif %}>{{ user }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label class="mb-0" for="status">Open/Resolved</label>
+                                <select class="form-control form-control-sm mb-3" id="status" name="status" aria-label="Select status filter">
+                                    <option value="all" {% if prefill.status_is == 'all' %} selected {% endif %}>Any</option>
+                                    <option value=0 {% if prefill.status_is == 0 %} selected {% endif %}>Open</option>
+                                    <option value=1 {% if prefill.status_is == 1 %} selected {% endif %}>Resolved</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-sm-3">
-                            <label for="title_contains" class="mb-0">Title</label>
-                            <input class="form-control form-control-sm mb-3" type="search" id="title_contains" name="title_contains" aria-label="Search in title" placeholder="search in title" value="{{ prefill.title_contains }}">
+                        <!-- form, second row-->
+                        <div class="row border border-secondary rounded bg-white px-auto py-2 my-1">
+                            <div class="col-sm text-center">
+                                <button id="search" type="submit" class="btn btn-primary btn-sm mx-2 my-2">Search</button>
+                            </div>
+                            <div class="col-sm text-center">
+                                <a href="{% url 'def_list' 1 %}" class="btn btn-secondary btn-sm mx-2 my-2">Reset</a>
+                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <label for="body_contains" class="mb-0">Body</label>
-                            <input class="form-control form-control-sm mb-3" type="search" id="body_contains" name="body_contains" aria-label="Search in body" placeholder="search in body" value="{{ prefill.body_contains }}">
-                        </div>
-                        <div class="col-sm">
-                            <label for="date_sort" class="mb-0">Sort by</label>
-                            <select class="form-control form-control-sm mb-3" id="date_sort" name="date_sort" aria-label="sort date">
-                                <option value="dsc" {% if prefill.sort_by == 'dsc' %} selected {% endif %}>Descending</option>
-                                <option value="asc" {% if prefill.sort_by == 'asc' %} selected {% endif %}>Ascending</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-1">
-                            <label for="author" class="mb-0">Author</label>
-                            <select class="form-control form-control-sm mb-3" id="author" name="author" aria-label="Select author">
-                                <option value="all">All</option>
-                                {% for user in users %}
-                                <option value="{{ user.id }}" {% if prefill.author_is == user.id %} selected {% endif %}>{{ user }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-sm">
-                            <label class="mb-0" for="status">Open/Resolved</label>
-                            <select class="form-control form-control-sm mb-3" id="status" name="status" aria-label="Select status filter">
-                                <option value="all" {% if prefill.status_is == 'all' %} selected {% endif %}>Any</option>
-                                <option value=0 {% if prefill.status_is == 0 %} selected {% endif %}>Open</option>
-                                <option value=1 {% if prefill.status_is == 1 %} selected {% endif %}>Resolved</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- form, second row-->
-                    <div class="row border border-secondary rounded bg-white px-auto py-2 my-1">
-                        <div class="col-sm text-center">
-                            <button id="search" type="submit" class="btn btn-primary btn-sm mx-2 my-2">Search</button>
-                        </div>
-                        <div class="col-sm text-center">
-                            <a href="{% url 'def_list' 1 %}" class="btn btn-secondary btn-sm mx-2 my-2">Reset</a>
-                        </div>
-                    </div>   
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-
-
-    </div>
-    
-
         <br>
         <!-- column headers -->
         <div class="row">
@@ -112,30 +106,48 @@
                 <p><i class="fa-solid fa-circle-check"></i></p>
             </div>
         </div>
-
         <!-- data -->
         <div class="row border border-secondary rounded bg-white">
             <div class="col">
-            {% for defect in defects %}
+                {% for defect in defects %}
                 <div class="row border-top border-bottom">
-                    <div class="col-1 pl-1 pr-0 py-1"><p class="m-auto"><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p></div>
-                    <div class="col-1 px-0 py-1"><p class="m-auto">{{ defect.updates.count }}</p></div>
-                    <div class="col px-0 py-1 d-block d-sm-none text-truncate"><a class="text-dark" href="{% url 'def_detail' defect.defect_id %}"><p class="">{{defect.trunc_title}}</p></a></div>  
-                    <div class="col px-0 py-1 d-none d-sm-block text-truncate"><a class="text-dark" href="{% url 'def_detail' defect.defect_id %}"><p class="">{{defect.trunc_title}}</p></a></div> 
-                    <div class="col-3 px-0 py-1 d-none d-sm-block"><a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}"><p class="text-truncate">{{defect.excerpt}}</p></a></div>   
-                    <div class="col-2 px-0 py-1"><p class="text-truncate m-auto">{{defect.reported_on|date:"d/m/Y"}}</p></div>
-                    <div class="col-1 px-0 py-1"><p class="text-truncate m-auto">{{defect.author}}</p></div>
+                    <div class="col-1 pl-1 pr-0 py-1">
+                        <p class="m-auto"><i class="fa-solid {{ defect.category.fa_string }}" style="color: {{ defect.category.colour }};"></i></p>
+                    </div>
+                    <div class="col-1 px-0 py-1">
+                        <p class="m-auto">{{ defect.updates.count }}</p>
+                    </div>
+                    <div class="col px-0 py-1 d-block d-sm-none text-truncate">
+                        <a class="text-dark" href="{% url 'def_detail' defect.defect_id %}">
+                            <p class="">{{defect.trunc_title}}</p>
+                        </a>
+                    </div>
+                    <div class="col px-0 py-1 d-none d-sm-block text-truncate">
+                        <a class="text-dark" href="{% url 'def_detail' defect.defect_id %}">
+                            <p class="">{{defect.trunc_title}}</p>
+                        </a>
+                    </div>
+                    <div class="col-3 px-0 py-1 d-none d-sm-block">
+                        <a class="text-dark word-wrap" href="{% url 'def_detail' defect.defect_id %}">
+                            <p class="text-truncate">{{defect.excerpt}}</p>
+                        </a>
+                    </div>
+                    <div class="col-2 px-0 py-1">
+                        <p class="text-truncate m-auto">{{defect.reported_on|date:"d/m/Y"}}</p>
+                    </div>
+                    <div class="col-1 px-0 py-1">
+                        <p class="text-truncate m-auto">{{defect.author}}</p>
+                    </div>
                     <div class="col-1 px-0 py-1 px-auto">
                         <p class="text-truncate ml-auto">
                             {% if defect.status %}
                             <i class="fa-solid fa-circle-check"></i>
                             {% else %}
                             <i class="fa-regular fa-circle"></i>
-                            {% endif %}
+                           {% endif %}
                         </p>
                     </div>
                 </div>
-                <div class="row border-bottom"></div>
                 {% endfor %}
             </div>
         </div>
@@ -143,21 +155,22 @@
         <div class="row justify-content-center">
             <div class="col">
                 <!-- pagination -->
-                    <nav class="pagination-nav" aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            {% if defects.has_previous %}
-                            <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.previous_page_number %}">Previous</a></li>
-                            {% endif %}
-                            {% for num in defects.paginator.page_range %}
-                            <li class="page-item"><a class="page-link" href="{% url 'def_list' num %}">{{ num }}</a></li>
-                            {% endfor %}
-                            {% if defects.has_next %}
-                            <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.next_page_number %}">Next</a></li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div>
+                <nav class="pagination-nav" aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if defects.has_previous %}
+                        <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.previous_page_number %}">Previous</a></li>
+                        {% endif %}
+                        {% for num in defects.paginator.page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'def_list' num %}">{{ num }}</a></li>
+                        {% endfor %}
+                        {% if defects.has_next %}
+                        <li class="page-item"><a class="page-link" href="{% url 'def_list' defects.next_page_number %}">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
             </div>
         </div>
+    </div>
+</div>
 {% endif %}
 {% endblock %}
