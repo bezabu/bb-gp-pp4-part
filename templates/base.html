@@ -26,9 +26,7 @@
          <!-- top row-->
          <div class="row justify-content-between">
             <div class="col-6 d-block d-sm-none">
-               <a href="{% url 'dash_list' %}">
-                  <h1>PART</h1>
-               </a>
+               <h1><a href="{% url 'dash_list' %}">PART</a></h1>
             </div>
             <div class="col-6 d-block d-sm-none">
                {% if user.is_authenticated %}
@@ -64,9 +62,7 @@
                {% endif %}
             </div>
             <div class="col-8 d-none d-sm-block">
-               <a href="{% url 'dash_list' %}">
-                  <h1>Problem Archive & Resolution Tool</h1>
-               </a>
+               <h1><a href="{% url 'dash_list' %}">Problem Archive & Resolution Tool</a></h1>
             </div>
             <div class="col-4 d-none d-sm-block">
                {% if user.is_authenticated %}
