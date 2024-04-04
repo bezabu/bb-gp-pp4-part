@@ -1,10 +1,10 @@
+import cloudinary
 from django.shortcuts import render, get_object_or_404, reverse
 from django.core.paginator import Paginator, EmptyPage
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.models import User, Group, Permission
 from django.http import HttpResponseRedirect
-import cloudinary
 from cloudinary.forms import cl_init_js_callbacks
 from .models import Defect, Category, Update
 from .forms import UpdateForm, DefectForm, CategoryForm

@@ -25,23 +25,18 @@
         </div>
         <div class="row border border-secondary rounded bg-white mt-3">
             <div class="col my-4">
-                {% autoescape off %}
-                {{ defect.body }}
-                {% endautoescape %}
+                {{ defect.body | safe }}
             </div>
         </div>
         <div class="row mt-3">
             <div class="col"> 
                 <!-- images go here -->
-                <!-- images go here -->
                 {% if "placeholder" in defect.image_url.url %}
                 <p>No images.</p>
                 {% else %}
                 <a href="{{ defect.image_url.url }}" target="_BLANK">
-                    <!--<img width="200" height="200" class="img-fluid img-thumbnail" src="{{ defect.image_url.url }}">-->
                     <div class="col border rounded" style="width: 200px; height: 200px; background-image: url({{ defect.image_url.url }}); overflow: hidden; background-position:center; background-size: cover;"></div>
                 </a>
-                <!--{% cloudinary defect.image_url format="jpg" width=120 height=80 crop="fill" %}-->
                 {% endif %}
             </div>
         </div>
@@ -65,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col mb-4 mt-2" id="update_{{ update.update_id }}">
-                        {{ update.body }}
+                        {{ update.body | safe }}
                     </div>
                 </div>
                 <hr>
@@ -76,7 +71,6 @@
                         <p>No images.</p>
                         {% else %}
                         <a href="{{ update.image_url.url }}" target="_BLANK">
-                            <!--<img width="200" height="200" class="img-fluid img-thumbnail" src="{{ update.image_url.url }}">-->
                             <div class="col border rounded mb-2" style="width: 200px; height: 200px; background-image: url({{ update.image_url.url }}); overflow: hidden; background-position:center; background-size: cover;"></div>
                         </a>  
                         {% endif %}
@@ -96,7 +90,7 @@
     </div>
     <div class="row" id="new_edit">
         <div class="col">
-            <!-- new updates -->
+            <!-- new update form -->
             <div class="div my-5">
                 <div class="col">
                     {% if user.is_authenticated and perms.defect.add_update %}
