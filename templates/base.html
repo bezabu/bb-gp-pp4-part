@@ -36,7 +36,7 @@
                      <i class="fa-solid fa-user {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}text-danger
                      {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}text-success
                      {% elif user.is_authenticated and perms.defect.add_update and not perms.defect.add_category %}text-info
-                     {% elif user.is_authenticated and perms.defect.add_category %}text-warning{% endif %}"></i>
+                     {% elif user.is_authenticated and perms.defect.add_category %}text-warning{% endif %}" aria-label="{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access"></i>
                      <div class="dropdown dropleft text-center">
                         <span class="badge dropdown-toggle m-0 {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger
                         {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}badge-success
@@ -54,7 +54,7 @@
                {% else %}
                <div class="row">
                   <div class="col text-center px-0">
-                     <i class="fa-solid fa-user"></i>
+                     <i class="fa-solid fa-user" aria-label="Not logged in"></i>
                      <div class="dropdown dropleft text-center">
                         <span class="badge badge-dark dropdown-toggle m-0" role="menu" data-toggle="dropdown" aria-expanded="false">
                         Not logged in
@@ -79,7 +79,7 @@
                      <i class="fa-solid fa-user {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}text-danger
                      {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}text-success
                      {% elif user.is_authenticated and perms.defect.add_update and not perms.defect.add_category %}text-info
-                     {% elif user.is_authenticated and perms.defect.add_category %}text-warning{% endif %}"></i>
+                     {% elif user.is_authenticated and perms.defect.add_category %}text-warning{% endif %}" aria-label="{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access"></i>
                      <div class="dropdown dropleft text-center">
                         <span class="badge dropdown-toggle m-0 {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger
                         {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}badge-success
@@ -97,7 +97,7 @@
                {% else %}
                <div class="row">
                   <div class="col text-center px-0">
-                     <i class="fa-solid fa-user"></i>
+                     <i class="fa-solid fa-user" aria-label="Not logged in"></i>
                      <div class="dropdown dropleft text-center">
                         <span class="badge badge-dark dropdown-toggle m-0" role="menu" data-toggle="dropdown" aria-expanded="false">
                         Not logged in
