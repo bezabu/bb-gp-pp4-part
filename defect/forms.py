@@ -4,23 +4,35 @@ from cloudinary.models import CloudinaryField
 from django import forms
 
 
-class UpdateForm(forms.ModelForm):
-    #image = CloudinaryFileField()
-    class Meta:
-        model = Update
-        fields = ('body', 'image_url', 'resolution')
-    
-
-        
-
-class DefectForm(forms.ModelForm):
-    #image_url = CloudinaryFileField()
-    class Meta:
-        model = Defect
-        fields = ('category', 'title', 'body', 'image_url')
-        #fields = ('category', 'title', 'body')
-
 class CategoryForm(forms.ModelForm):
+    """
+    Form class for users to add categories
+    """
     class Meta:
+        """
+        Specify the django model and order of the fields
+        """
         model = Category
         fields = ('name', 'description', 'fa_string', 'colour')
+
+class DefectForm(forms.ModelForm):
+    """
+    Form class for users to log new defects
+    """
+    class Meta:
+        """
+        Specify the django model and order of the fields
+        """
+        model = Defect
+        fields = ('category', 'title', 'body', 'image_url')
+
+class UpdateForm(forms.ModelForm):
+    """
+    Form class for users to add new updates
+    """
+    class Meta:
+        """
+        Specify the django model and order of the fields
+        """
+        model = Update
+        fields = ('body', 'image_url', 'resolution')
