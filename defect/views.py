@@ -9,10 +9,27 @@ from cloudinary.forms import cl_init_js_callbacks
 from .models import Defect, Category, Update
 from .forms import UpdateForm, DefectForm, CategoryForm
 
-# Create your views here.
-
 
 def defect_list(request, page=1):
+    """
+    Returns a filtered list of defects in :model:`defect` depending on
+    the GET request and displays them in a page of 15.
+
+    **Context**
+
+    ``defects``
+        The filtered instances of :model:`defect.Defect`.
+    ``categories``
+        All instances of :model:`defect.Categories`.
+    ``users``
+        All instances of :model:`auth.User`.
+    ``prefill``
+        Previously selected filter criteria.
+
+    **Template**
+
+    :template:`defect/defect_list.html`
+    """
     users = User.objects.all()
     defects = Defect.objects.all()
     categories = Category.objects.all()
@@ -76,6 +93,18 @@ def defect_list(request, page=1):
 
 
 def dashboard(request):
+    """
+    Returns the last 5 instances of :model:`defect.Defect` and the last 5 instances
+    of :model:`defect.Update`.
+
+    **Context**
+    ``defects``
+        The last 5 instances of :model:`defect.Defect`.
+    ``updates``
+        The last 5 instances of :model:`defect.Update`.
+    **Template**
+    :template:`defect/dash.html`
+    """
     defects = Defect.objects.filter(status=0).order_by("-reported_on")[:5]
     updates = Update.objects.all().order_by("-created_on")[:5]
     context = {
@@ -87,6 +116,28 @@ def dashboard(request):
 
 
 def defect_detail(request, defect_id):
+    """
+    Display an individual :model:`defect.Defect` and related instances
+    of :model:`defect.Update` with a form for adding a new instance of
+    :model:`defect.Update`.
+
+    **Context**
+
+    ``defect``
+        An instance of :model:`defect.Defect`.
+    ``updates``
+        All instances of :model:`defect.Update` related to the defect.
+    ``update_count``
+        A count of updates for this defect.
+    ``update_form``
+        An instance of :form:`defect.UpdateForm`.
+    ``update_latest``
+        The last instance of :model:`defect.Update` related to the defect.
+
+    **Template**
+    
+    :template:`defect/defect_detail.html`
+    """
     defect = get_object_or_404(Defect.objects.all(), defect_id=defect_id)
     updates = defect.updates.all().order_by("created_on")
     update_count = defect.updates.count()
@@ -126,7 +177,16 @@ def defect_detail(request, defect_id):
 
 def update_edit(request, defect_id, update_id):
     """
-    view to edit updates
+    Display an individual update for edit.
+
+    **Context**
+
+    ``defect``
+        An instance of :model:`defect.Defect`.
+    ``updates``
+        All instances of :model:`defect.Update` related to the defect.
+    ``update_form``
+        An instance of :form:`defect.UpdateForm`.
     """
     if request.method == 'POST':
         update = get_object_or_404(Update, pk=update_id)
@@ -148,7 +208,17 @@ def update_edit(request, defect_id, update_id):
 
 def update_delete(request, defect_id, update_id):
     """
+    Delete an individual update.
 
+    **Context**
+
+    ``defect``
+        An instance of :model:`defect.Defect`.
+    ``updates``
+        All instances of :model:`defect.Update` related to the defect.
+
+    **Template**
+    
     """
     defect = get_object_or_404(Defect, defect_id=defect_id)
     update = get_object_or_404(Update, pk=update_id)
@@ -165,6 +235,18 @@ def update_delete(request, defect_id, update_id):
 
 def log_defect(request):
     """
+    Display a form for adding an instance of :model:`defect.Defect`.
+
+    **Context**
+
+    ``categories``
+        All instances of :model:`defect.Category`.
+    ``defect_form``
+        An instance of :form:`defect.DefectForm`.
+    
+    **Template**
+
+    :template:`defect/log_defect.html`    
     """
     categories = Category.objects.all()
 
@@ -201,7 +283,18 @@ def log_defect(request):
 
 def category_list(request):
     """
-    #
+    Renders a list of all instances of :model:`defect.Category` with
+    a form to add more.
+
+    **Context**
+
+    ``categories``
+        All instances of :model:`defect.category`.
+    ``category_form``
+        An instance of :forms:`defect.CategoryForm`.
+    **Template**
+    
+    :template:`defect/category_list.html`
     """
     categories = Category.objects.all()
 
@@ -238,17 +331,3 @@ def user_list(request):
             'users': users,
         }
     )
-
-
-def home_page(request):
-    return render(request, 'defect/index.html')
-
-
-class CategoryList(generic.ListView):
-    queryset = Category.objects.all()
-    template_name = "category_list.html"
-
-
-class DashList(generic.ListView):
-    queryset = Defect.objects.all().order_by("-reported_on")[:2]
-    template_name = "dash.html"
