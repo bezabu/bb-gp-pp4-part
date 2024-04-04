@@ -2,6 +2,7 @@ import cloudinary
 from django.shortcuts import render, get_object_or_404, reverse
 from django.core.paginator import Paginator, EmptyPage
 from django.views import generic
+from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.models import User, Group, Permission
 from django.http import HttpResponseRedirect
@@ -318,6 +319,11 @@ def category_list(request):
         },
     )
 
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
+
+def custom_500(request):
+    return render(request, '500.html', status=500)
 
 def user_list(request):
     """

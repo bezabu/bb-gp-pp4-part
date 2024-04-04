@@ -24,4 +24,8 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('admin/', admin.site.urls),
     path('', include('defect.urls'), name='home')
+
 ]
+
+handler404 = 'defect.views.custom_404'
+handler500 = 'defect.views.custom_500'
