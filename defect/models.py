@@ -7,8 +7,10 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Open"), (1, "Resolved"))
 
+
 def get_null_category():
     return Category.objects.get_or_create(name='Null')
+
 
 class Category(models.Model):
     """
@@ -49,9 +51,11 @@ class Defect(models.Model):
     def __str__(self):
         return f"Defect: {self.title} ({self.category})"
 
+
 class Update(models.Model):
     """
-    Stores a single update to a defect, related to :model:'Defect' and :model:'auth.User'
+    Stores a single update to a defect, related to :model:'Defect'
+    and :model:'auth.User'
     """
     update_id = models.AutoField(primary_key=True)
     defect = models.ForeignKey(
@@ -63,5 +67,6 @@ class Update(models.Model):
     excerpt = models.CharField(max_length=30, blank=True)
     image_url = CloudinaryField('image', default='placeholder', blank=True)
     resolution = models.IntegerField(choices=STATUS, default=0)
+
     class Meta:
         ordering = ["-created_on"]

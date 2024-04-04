@@ -11,7 +11,9 @@ class TestDefectForm(TestCase):
             'title': '',
             'body': '',
         })
-        self.assertFalse(defect_form.is_valid(),msg="No data was provided, the form is not valid")
+        self.assertFalse(
+            defect_form.is_valid(),
+            msg="No data was provided, the form is not valid")
 
     def test_category_is_not_valid(self):
         """Test for category data type"""
@@ -20,7 +22,9 @@ class TestDefectForm(TestCase):
             'title': 'test title',
             'body': 'test name of category instead of id',
         })
-        self.assertFalse(defect_form.is_valid(),msg="String provided for category instead of integer")
+        self.assertFalse(
+            defect_form.is_valid(),
+            msg="String provided for category instead of integer")
 
     def test_category_entry_is_not_valid(self):
         """Test for invalid cateogry"""
@@ -29,8 +33,10 @@ class TestDefectForm(TestCase):
             'title': 'test title',
             'body': 'body test data',
         })
-        self.assertFalse(defect_form.is_valid(),msg="category does not exist")
-    
+        self.assertFalse(
+            defect_form.is_valid(),
+            msg="category does not exist")
+
     def test_title_is_not_valid(self):
         """Test for title"""
         defect_form = DefectForm({
@@ -38,7 +44,9 @@ class TestDefectForm(TestCase):
             'title': '',
             'body': 'body test data',
         })
-        self.assertFalse(defect_form.is_valid(),msg="Title data not provided")
+        self.assertFalse(
+            defect_form.is_valid(),
+            msg="Title data not provided")
 
     def test_body_is_not_valid(self):
         """Test for body"""
@@ -47,8 +55,9 @@ class TestDefectForm(TestCase):
             'title': 'test title',
             'body': '',
         })
-        self.assertFalse(defect_form.is_valid(),msg="Body field not provided")
-
+        self.assertFalse(
+            defect_form.is_valid(),
+            msg="Body field not provided")
 
 
 class TestUpdateForm(TestCase):
@@ -59,7 +68,9 @@ class TestUpdateForm(TestCase):
             'body': 'This is a great post',
             'resolution': 0,
         })
-        self.assertTrue(update_form.is_valid(),msg="All fields provided, form is valid")
+        self.assertTrue(
+            update_form.is_valid(),
+            msg="All fields provided, form is valid")
 
     def test_form_is_not_valid(self):
         """Test for body"""
@@ -67,7 +78,9 @@ class TestUpdateForm(TestCase):
             'body': '',
             'resolution': 0,
         })
-        self.assertFalse(update_form.is_valid(),msg="No body data provided")
+        self.assertFalse(
+            update_form.is_valid(),
+            msg="No body data provided")
 
     def test_form_is_complete(self):
         """Test for resoltion"""
@@ -75,7 +88,9 @@ class TestUpdateForm(TestCase):
             'body': 'body test',
             'resolution': '',
         })
-        self.assertFalse(update_form.is_valid(),msg="No resolution data provided")
+        self.assertFalse(
+            update_form.is_valid(),
+            msg="No resolution data provided")
 
     def test_form_status_not_valid(self):
         """Test for resolution data type"""
@@ -83,8 +98,9 @@ class TestUpdateForm(TestCase):
             'body': 'body test',
             'resolution': 'yes',
         })
-        self.assertFalse(update_form.is_valid(),msg="resolution data provided is string, expecting integer")
-
+        self.assertFalse(
+            update_form.is_valid(),
+            msg="resolution data provided is string, expecting integer")
 
 
 class TestCategoryForm(TestCase):
@@ -97,8 +113,10 @@ class TestCategoryForm(TestCase):
             'fa_string': 'short_string',
             'colour': '#AAAAAA',
         })
-        self.assertFalse(category_form.is_valid(),msg="Name was not provided")
-    
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="Name was not provided")
+
     def test_form_empty_not_valid(self):
         """Test for the 'description' field"""
         category_form = CategoryForm({
@@ -107,7 +125,9 @@ class TestCategoryForm(TestCase):
             'fa_string': 'short_string',
             'colour': '#AAAAAA',
         })
-        self.assertFalse(category_form.is_valid(),msg="Description was not provided")
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="Description was not provided")
 
     def test_category_form_is_valid(self):
         """Test for the 'fa_string' field"""
@@ -117,7 +137,9 @@ class TestCategoryForm(TestCase):
             'fa_string': '',
             'colour': '#AAAAAA',
         })
-        self.assertFalse(category_form.is_valid(),msg="fa_string was not provided")
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="fa_string was not provided")
 
     def test_form_is_valid(self):
         """Test for the 'colour' field"""
@@ -127,7 +149,9 @@ class TestCategoryForm(TestCase):
             'fa_string': 'fa_string',
             'colour': '',
         })
-        self.assertFalse(category_form.is_valid(),msg="Colour was not provided")
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="Colour was not provided")
 
     def test_form_is_valid(self):
         """Test for all fields"""
@@ -137,7 +161,9 @@ class TestCategoryForm(TestCase):
             'fa_string': 'short_string',
             'colour': '#AAAAAA',
         })
-        self.assertTrue(category_form.is_valid(),msg="All fields provided")
+        self.assertTrue(
+            category_form.is_valid(),
+            msg="All fields provided")
 
     def test_form_colour_is_not_valid(self):
         """Test for colour max length"""
@@ -147,7 +173,9 @@ class TestCategoryForm(TestCase):
             'fa_string': 'short_string',
             'colour': 'toomanycharacters',
         })
-        self.assertFalse(category_form.is_valid(),msg="The data provided for colour was too long")
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="The data provided for colour was too long")
 
     def test_form_fa_string_is_not_slug(self):
         """Test for spaces in fa_string"""
@@ -157,26 +185,32 @@ class TestCategoryForm(TestCase):
             'fa_string': 'short string with spaces',
             'colour': '123456',
         })
-        self.assertFalse(category_form.is_valid(),msg="The data provided for fa_string included characters not allowed in a slug")
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="fa_string included characters not allowed in a slug")
 
     def test_form_name_length_is_not_valid(self):
         """Test for name max length"""
         category_form = CategoryForm({
-            'name': 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum.',
+            'name': 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'
+            ' Aenean commodo ligula eget dolor. Aenean massa. Cum.',
             'description': 'short test description',
             'fa_string': 'short_string',
             'colour': '123456',
         })
-        self.assertFalse(category_form.is_valid(),msg="The data provided for name was too long")
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="The data provided for name was too long")
 
     def test_form_fa_string_too_long_is_not_valid(self):
         """Test for fa_string length"""
         category_form = CategoryForm({
             'name': 'name',
             'description': 'short test description',
-            'fa_string': 'dfadfdfgbvkdufgbkvd-gfbkdvfgbdufgnkvsdfhncsdfhguv-sbgdifugnscdgfdugfvbksdugflac_nkjdhfcgauydgfcbassud',
+            'fa_string': 'dfadfdfgbvkdufgbkvd-gfbkdvfgbdufgnkvsdfhncsdfhgu'
+            'v-sbgdifugnscdgfdugfvbksdugflac_nkjdhfcgauydgfcbassud',
             'colour': '123456',
         })
-        self.assertFalse(category_form.is_valid(),msg="The data provided for fa_string was too long")
-
-    
+        self.assertFalse(
+            category_form.is_valid(),
+            msg="The data provided for fa_string was too long")
