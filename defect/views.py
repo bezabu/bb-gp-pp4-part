@@ -13,7 +13,7 @@ from .forms import UpdateForm, DefectForm, CategoryForm
 
 def defect_list(request, page=1):
     """
-    Returns a filtered list of defects in :model:`defect` depending on
+    Renders a filtered list of defects in :model:`defect` depending on
     the GET request and displays them in a page of 15.
 
     **Context**
@@ -95,7 +95,7 @@ def defect_list(request, page=1):
 
 def dashboard(request):
     """
-    Returns the last 5 instances of :model:`defect.Defect` and the last 5
+    Renders the last 5 instances of :model:`defect.Defect` and the last 5
     instances of :model:`defect.Update`.
 
     **Context**
@@ -118,7 +118,7 @@ def dashboard(request):
 
 def defect_detail(request, defect_id):
     """
-    Display an individual :model:`defect.Defect` and related instances
+    Renders an individual instance of :model:`defect.Defect` and related instances
     of :model:`defect.Update` with a form for adding a new instance of
     :model:`defect.Update`.
 
@@ -236,7 +236,7 @@ def update_delete(request, defect_id, update_id):
 
 def log_defect(request):
     """
-    Display a form for adding an instance of :model:`defect.Defect`.
+    Render a form for adding an instance of :model:`defect.Defect`.
 
     **Context**
 
