@@ -10,12 +10,26 @@ It has been designed specifically with old buildings or facilities in mind, or w
 
 The design is minimalist, emphasizing presentation and readability of information. Colour is used to convey information. The images are uploaded by the users.
 
-[Features](https://github.com/bezabu/bb-gp-pp4-part#features)
-[User Experience Design]
-[Technologies](https://github.com/bezabu/bb-gp-pp4-part#TTechnologies)
-[Testing](https://github.com/bezabu/bb-gp-pp4-part#Testing)
-[Deployment](https://github.com/bezabu/bb-gp-pp4-part#Deployment)
-[Credits](https://github.com/bezabu/bb-gp-pp4-part#Credits)
+## Readme Contents
+
+- [Features](#features)
+  - [Existing Features](#existing-features)
+  - [Features to implement](#features-to-implement)
+- [User Experience Design](#user-experience-design)
+  - [User Journey](#user-journey)
+  - [User Stories](#user-stories)
+- [Technologies](#technologies)
+- [Testing](#testing)
+  - [Manual Testing](#manual-testing)
+  - [Automated Testing](#automated-testing)
+  - [Validator Testing](#validator-testing)
+  - [Unfixed Bugs](#unfixed-bugs)
+- [Deployment](#deployment)
+- [Credits](#credits)
+  - [Content](#content)
+  - [Media](#media)
+  - [Code](#code)
+  - [Acknowledgements](#acknowledgements)
 
 
 ## Features
@@ -104,7 +118,27 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 ### User Stories
 
-The [Github Projects Kanban board](https://github.com/users/bezabu/projects/5/views/1) was used for user stories.
+The [Github Projects Kanban board](https://github.com/users/bezabu/projects/5/views/1) was used to organise user stories.
+
+The user stories are as follows:
+
+- As a Site User I can register an account so that I can log in and use the site functionality
+  - Acceptance Criteria
+    - AC1 Given an email a user can register an account.
+    - AC2 Then the user can log in.
+    - AC3 The site content is hidden unless logged in
+
+- As a Site User I can log defects so that problems with building facilities and structure can be tracked and mitigated/repaired easier
+  - Acceptance Criteria:
+    - AC1 A defect can be logged as a specific entry in a database
+    - AC2 The entry contains relevant information such as location, category(plumbing/electrical etc), date reported
+    - AC3 The defect can be viewed by other site users
+
+- As a Site User I can fill out a form so that I can add new defect information to the database
+  - Acceptance Criteria
+    - AC1 If the user is logged in they can access the log defect form
+    - AC2 The completed form adds data to the defect model
+    - AC3 Successful form entries are confirmed
 
 
 ## Technologies
@@ -140,9 +174,13 @@ The [Github Projects Kanban board](https://github.com/users/bezabu/projects/5/vi
 
 ### Automated Testing
 
-- All 20 automated tests passed
+Automated tests can be found in [test_forms.py]() and [test_views.py]()
 
 image of tests passing
+
+- All 20 automated tests passed
+
+
 ### Validator Testing
 
 - All pages, including logged in content pass through the W3C Markup Validation Service with no errors
