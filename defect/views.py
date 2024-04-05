@@ -153,7 +153,6 @@ def defect_detail(request, defect_id):
                 update.excerpt = update.body[:27] + "..."
             else:
                 update.excerpt = update.body
-            print(update)
             defect.status = update.resolution
             defect.save()
             update.save()
