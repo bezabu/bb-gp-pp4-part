@@ -111,3 +111,6 @@ for (let button of deleteButtons) {
     });
 }
 
+
+
+aria-label="{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access"
