@@ -10,15 +10,13 @@ It has been designed specifically with old buildings or facilities in mind, or w
 
 The design is minimalist, emphasizing presentation and readability of information. Colour is used to convey information. The images are uploaded by the users.
 
-- User Journey
+[Features](https://github.com/bezabu/bb-gp-pp4-part#features)
+[User Experience Design]
+[Technologies](https://github.com/bezabu/bb-gp-pp4-part#TTechnologies)
+[Testing](https://github.com/bezabu/bb-gp-pp4-part#Testing)
+[Deployment](https://github.com/bezabu/bb-gp-pp4-part#Deployment)
+[Credits](https://github.com/bezabu/bb-gp-pp4-part#Credits)
 
-  - A user first notices a problem and logs it as a defect, optionally adding an image to better illustrate location or severity.
-
-  - If a manager was not the reporter, they can begin taking steps to resolve the issue, calling the relevant contractor and taking steps to mitigate in the meantime. This can all be communicated in updates.
-
-  - A contractor arrives and fixes the problem, explaining to the manager what went wrong and what they did to fix it (and how much it cost.) The manager adds all of this information in an update, marking the defect as resolved.
-
-  - The entry stays in the database so that if the same problem, or similar, arises the management can see everything that was tried last time including how long it took to fix and how much it cost, and can plan accordingly.
 
 ## Features
 
@@ -85,12 +83,55 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - keywords/tags
 
+- More extensive filtering & sorting
+
+- different cascade
+
 ## User Experience Design
+
+### User Journey
+
+- User Journey
+
+  - A user first notices a problem and logs it as a defect, optionally adding an image to better illustrate location or severity.
+
+  - If a manager was not the reporter, they can begin taking steps to resolve the issue, calling the relevant contractor and taking steps to mitigate in the meantime. This can all be communicated in updates.
+
+  - A contractor arrives and fixes the problem, explaining to the manager what went wrong and what they did to fix it (and how much it cost.) The manager adds all of this information in an update, marking the defect as resolved.
+
+  - The entry stays in the database so that if the same problem, or similar, arises the management can see everything that was tried last time including how long it took to fix and how much it cost, and can plan accordingly.
+
 
 ### User Stories
 
+The [Github Projects Kanban board](https://github.com/users/bezabu/projects/5/views/1) was used for user stories.
+
+
 ## Technologies
 
+- HTML has been used to structure the website.
+- CSS has been used to style the website.
+- JavaScript was used for the edit and delete buttons.
+- Python was used as the main language in which this project was coded.
+- Django was the framework used to build this website.
+- Bootstrap was used to create and style the front end of the website.
+- Font Awesome icons have been used for category icons, column headers and user icons.
+- Google Fonts have been used to import the Poppins font.
+- Paint.NET was used to edit the hammer image before using it with Favicon.
+- Favicon was used to create the favicon for the website.
+- GitPod was used as IDE
+- Google Chrome Developer Tools were used to inspect elements of the website and test different styles.
+- GitHub has been used to store the code, images, and other contents of the website.
+- Heroku was used to deploy the website to the web.
+- Git was used for version control, pushing contents to GitHub.
+- W3C Markup Validation Service was used to check HTML.
+- W3C CSS Validation Service was used to check CSS.
+- JSHint was used to test the javascript code.
+- CI Python Linter was used to test Python code.
+- Wave Web Accessibility Evaluation Tool was used to test the website's accessibility.
+- Lighthouse was used to run an audit of the website.
+- Am I Responsive was used to create the mockup.
+- Grammarly was used to check for typos in Readme.md.
 
 
 ## Testing
@@ -101,6 +142,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - All 20 automated tests passed
 
+image of tests passing
 ### Validator Testing
 
 - All pages, including logged in content pass through the W3C Markup Validation Service with no errors
@@ -115,6 +157,8 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
   - 1 contrast error was given for the gin in button. I fixed this by changing the shade of blue from the bootstrap default to a slightly darker shade of blue.
 
+  image wave
+
 - All Python code passes through the CI Python Linter with no errors
 
 - The website generates a score of 99 on all pages with the following exceptions:
@@ -125,10 +169,26 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
   - The auth admin page generates a score of 85
 
+image lighthouse
 
 ### Unfixed Bugs
 
+There are no unfixed bugs.
+
 ## Deployment
+
+The following steps were taken to deploy this project to Heroku:
+
+1. Create new app in [Heroku](https://dashboard.heroku.com/apps), selecting Europe as the region
+
+2. In Settings, config vars, add the config vars `CLOUDINARY_URL`, `DATABASE_URL` and `SECRET_KEY`
+
+3. In the Deploy section, go to deployment method, select GitHub, search for the repository and click connect.
+
+4. Scroll down to Manual Deploy, ensure the main branch is selected and click Deploy Branch
+
+5. The deployed app may be found [here](https://bb-gp-pp4-part-07cc42d9a56e.herokuapp.com/)
+
 
 ## Credits
 
@@ -136,7 +196,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 ### Media
 
-[This hammer image](https://commons.wikimedia.org/wiki/File:Hammer_Vector.svg) by Devin McElheran was used as the basis for the favicon, used under CC BY-SA 4.0 DEED.
+[This hammer image](https://commons.wikimedia.org/wiki/File:Hammer_Vector.svg) by Devin McElheran was used as for the favicon, used under CC BY-SA 4.0 DEED.
 
 
 ### Code
