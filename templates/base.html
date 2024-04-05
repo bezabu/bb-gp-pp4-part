@@ -123,11 +123,11 @@
          </button>
          <div class="collapse navbar-collapse" role="navigation" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-               <a class="nav-link nav-col{% if request.path == dash_url %} active{% endif %} {% if user.is_authenticated is false %}disabled{% endif %}" href="{% url 'dash_list' %}">Home <span class="sr-only">(current)</span></a>
-               <a class="nav-link nav-col{% if request.path == def_url %} active{% endif %}" href="{% url 'def_list' 1 %}">Defects</a>
-               <a class="nav-link nav-col{% if request.path == cat_url %} active{% endif %}" href="{% url 'cat_list' %}">Categories</a>
-               <a class="nav-link nav-col{% if request.path == user_url %} active{% endif %} {% if 'auth.change_user' not in user.get_all_permissions %}disabled" aria-disabled="true{% endif %}" href="/admin/auth/user/">Users</a>
-               <a class="nav-link nav-col{% if request.path == logout_url %} active{% endif %}" href="{% url 'account_logout' %}">Sign out</a>
+               <a class="nav-link nav-col{% if request.path == dash_url %} active" aria-current="page{% endif %}" href="{% url 'dash_list' %}">Home <span class="sr-only">(current)</span></a>
+               <a class="nav-link nav-col{% if request.path == def_url %} active" aria-current="page{% endif %}" href="{% url 'def_list' 1 %}">Defects</a>
+               <a class="nav-link nav-col{% if request.path == cat_url %} active" aria-current="page{% endif %}" href="{% url 'cat_list' %}">Categories</a>
+               <a class="nav-link nav-col{% if request.path == user_url %} active{% endif %} {% if 'auth.change_user' not in user.get_all_permissions %}disabled" aria-disabled="true{% endif %}" {% if request.path == user_url %}aria-current="page"{% endif %} href="/admin/auth/user/">Users</a>
+               <a class="nav-link nav-col{% if request.path == logout_url %} active" aria-current="page{% endif %}" href="{% url 'account_logout' %}">Sign out</a>
             </div>
          </div>
       </nav>

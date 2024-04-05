@@ -91,6 +91,8 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 ## Technologies
 
+
+
 ## Testing
 
 ### Manual Testing
@@ -115,7 +117,14 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - All Python code passes through the CI Python Linter with no errors
 
-- The website generates a score of 99 on the homepage whether logged in or out.
+- The website generates a score of 99 on all pages with the following exceptions:
+
+  - The sign up page generates a score of 98
+
+  - The defect detail page score varies depending on how many updates or images are present on the page.
+
+  - The auth admin page generates a score of 85
+
 
 ### Unfixed Bugs
 
@@ -127,6 +136,13 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 ### Media
 
+[This hammer image](https://commons.wikimedia.org/wiki/File:Hammer_Vector.svg) by Devin McElheran was used as the basis for the favicon, used under CC BY-SA 4.0 DEED.
+
+
 ### Code
+
+[This tutorial](https://www.makeuseof.com/create-custom-404-error-page-django/) was followed to set up the custom 404 & 500 pages.
+
+
 
 ### Acknowledgements
