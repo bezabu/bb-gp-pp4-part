@@ -12,6 +12,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Defect reporting tool for hospitality venues">
       <title>PART - Problem Archive & Resolution Tool</title>
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -41,10 +42,10 @@
                         <span class="badge dropdown-toggle m-0 {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger
                         {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}badge-success
                         {% elif user.is_authenticated and perms.defect.add_update and not perms.defect.add_category %}badge-info
-                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}" role="menu" data-toggle="dropdown" aria-expanded="false">
+                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}" aria-controls="menu" data-toggle="dropdown" aria-expanded="false">
                         {{ user }}
                         </span>
-                        <div class="dropdown-menu text-center" role="presentation">
+                        <div class="dropdown-menu text-center" role="menu">
                            <p role="menuitem">{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access</p>
                            <a class="dropdown-item" role="menuitem" href="{% url 'account_logout' %}">Sign out</a>
                         </div>
@@ -54,12 +55,12 @@
                {% else %}
                <div class="row">
                   <div class="col text-center px-0">
-                     <i class="fa-solid fa-user" aria-label="Not logged in"></i>
+                     <i class="fa-solid fa-user" aria-label="User account indicator"></i>
                      <div class="dropdown dropleft text-center">
-                        <span class="badge badge-dark dropdown-toggle m-0" role="menu" data-toggle="dropdown" aria-expanded="false">
+                        <span class="badge badge-dark dropdown-toggle m-0" aria-controls="menu" data-toggle="dropdown" aria-expanded="false">
                         Not logged in
                         </span>
-                        <div class="dropdown-menu text-center" role="presentation">
+                        <div class="dropdown-menu text-center" role="menu">
                            <a class="dropdown-item" href="{% url 'account_login' %}" role="menuitem">Sign in</a>
                            <a class="dropdown-item" href="{% url 'account_signup' %}" role="menuitem">Sign up</a>
                         </div>
@@ -81,13 +82,13 @@
                      {% elif user.is_authenticated and perms.defect.add_update and not perms.defect.add_category %}text-info
                      {% elif user.is_authenticated and perms.defect.add_category %}text-warning{% endif %}" aria-label="{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access"></i>
                      <div class="dropdown dropleft text-center">
-                        <span class="badge dropdown-toggle m-0 {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger
+                        <span id="acc_ind_2" class="badge dropdown-toggle m-0 {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger
                         {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}badge-success
                         {% elif user.is_authenticated and perms.defect.add_update and not perms.defect.add_category %}badge-info
-                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}" role="menu" data-toggle="dropdown" aria-expanded="false">
+                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}" aria-haspopup="true" aria-controls="menu" data-toggle="dropdown" aria-expanded="false" aria-label="account options">
                         {{ user }}
                         </span>
-                        <div class="dropdown-menu text-center" role="presentation">
+                        <div class="dropdown-menu text-center" role="menu" aria-labelledby="acc_ind_2">
                            <p role="menuitem">{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access</p>
                            <a class="dropdown-item" href="{% url 'account_logout' %}" role="menuitem">Sign out</a>
                         </div>
@@ -97,12 +98,12 @@
                {% else %}
                <div class="row">
                   <div class="col text-center px-0">
-                     <i class="fa-solid fa-user" aria-label="Not logged in"></i>
+                     <i class="fa-solid fa-user" aria-label="User account indicator"></i>
                      <div class="dropdown dropleft text-center">
-                        <span class="badge badge-dark dropdown-toggle m-0" role="menu" data-toggle="dropdown" aria-expanded="false">
+                        <span class="badge badge-dark dropdown-toggle m-0"data-toggle="dropdown">
                         Not logged in
                         </span>
-                        <div class="dropdown-menu text-center" role="presentation">
+                        <div class="dropdown-menu text-center">
                            <a class="dropdown-item" href="{% url 'account_login' %}" role="menuitem">Sign in</a>
                            <a class="dropdown-item" href="{% url 'account_signup' %}" role="menuitem">Sign up</a>
                         </div>
@@ -122,11 +123,11 @@
          </button>
          <div class="collapse navbar-collapse" role="navigation" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-               <a class="nav-link{% if request.path == dash_url %} active{% endif %} {% if user.is_authenticated is false %}disabled{% endif %}" href="{% url 'dash_list' %}">Home <span class="sr-only">(current)</span></a>
-               <a class="nav-link{% if request.path == def_url %} active{% endif %}" href="{% url 'def_list' 1 %}">Defects</a>
-               <a class="nav-link{% if request.path == cat_url %} active{% endif %}" href="{% url 'cat_list' %}">Categories</a>
-               <a class="nav-link{% if request.path == user_url %} active{% endif %} {% if 'auth.change_user' not in user.get_all_permissions %}disabled" aria-disabled="true{% endif %}" href="/admin/auth/user/">Users</a>
-               <a class="nav-link{% if request.path == logout_url %} active{% endif %}" href="{% url 'account_logout' %}">Sign out</a>
+               <a class="nav-link nav-col{% if request.path == dash_url %} active{% endif %} {% if user.is_authenticated is false %}disabled{% endif %}" href="{% url 'dash_list' %}">Home <span class="sr-only">(current)</span></a>
+               <a class="nav-link nav-col{% if request.path == def_url %} active{% endif %}" href="{% url 'def_list' 1 %}">Defects</a>
+               <a class="nav-link nav-col{% if request.path == cat_url %} active{% endif %}" href="{% url 'cat_list' %}">Categories</a>
+               <a class="nav-link nav-col{% if request.path == user_url %} active{% endif %} {% if 'auth.change_user' not in user.get_all_permissions %}disabled" aria-disabled="true{% endif %}" href="/admin/auth/user/">Users</a>
+               <a class="nav-link nav-col{% if request.path == logout_url %} active{% endif %}" href="{% url 'account_logout' %}">Sign out</a>
             </div>
          </div>
       </nav>

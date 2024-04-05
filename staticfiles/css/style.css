@@ -37,7 +37,12 @@ h2 > a:hover {
 li {
     list-style-type: none;
 }
-
+.nav-col {
+    color: #222222;
+}
+.btn-blue {
+    color: #ffffff;
+}
 /*
 // Extra small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap

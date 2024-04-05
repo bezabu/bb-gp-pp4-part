@@ -7,7 +7,7 @@
 <div class="card">
     <div class="card-body text-center">
       <h2 class="card-title">{% if user.is_authenticated %}You are logged in as {{ user }}.{% else %}You are not logged in{% endif %}</h2>
-      <a href="{% url 'account_login' %}" class="btn btn-primary">Login</a>
+      <a href="{% url 'account_login' %}" class="btn btn-secondary">Login</a>
       <a href="{% url 'account_signup' %}" class="btn btn-secondary">Register</a>
     </div>
   </div>
@@ -95,7 +95,7 @@
                     {% if "placeholder" in update.image_url.url %}
 
                     {% else %}
-                    <a href="{{ update.image_url.url }}" target="_BLANK"><p><i class="fa-solid fa-image"></i></p></a>
+                    <a href="{{ update.image_url.url }}" target="_BLANK" aria-label="Link to image (opens in new tab)."><p><i class="fa-solid fa-image"></i></p></a>
                     {% endif %}
                 </div>
                 <div class="col-5 px-0 py-1"><a class="text-dark" href="{% url 'def_detail' update.defect.defect_id %}#update_{{ update.update_id }}"><p class="text-truncate">{{update.excerpt}}</p></a></div>    
