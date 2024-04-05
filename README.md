@@ -105,7 +105,13 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - Javascript passes through JSHint with no errors
 
-- When using the WebAIM Web Accessibility Evaluation Tool, 1 error was given for aria labels. I fixed this by moving the role="menu" attribute to the parent div of the two menu items.
+- When using the WebAIM Web Accessibility Evaluation Tool, the following was returned:
+
+  - 1 error was given for aria labels. I fixed this by moving the role="menu" attribute to the parent div of the two menu items.
+
+  - 1 contrast error was given for the gin in button. I fixed this by changing the shade of blue from the bootstrap default to a slightly darker shade of blue.
+
+- 
 
 ### Unfixed Bugs
 

@@ -41,7 +41,8 @@ li {
     color: #222222;
 }
 .btn-blue {
-    background-color: blue;
+    background-color: #005DE7;
+    border-color: #005DE7;
 }
 /*
 // Extra small devices (portrait phones, less than 576px)
