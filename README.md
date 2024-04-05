@@ -193,34 +193,157 @@ The [Github Projects Kanban board](https://github.com/users/bezabu/projects/5/vi
 
 The user stories are as follows:
 
-- Account registration
+Account registration
 - As a Site User I can register an account so that I can log in and use the site functionality
-  - Acceptance Criteria
+  - Acceptance Criteria:
     - AC1 Given an email a user can register an account.
     - AC2 Then the user can log in.
     - AC3 The site content is hidden unless logged in
+  - Tasks:
+    - Install AllAuth
+    - Add if statements to templates to check if user is authenticated
+    - Test the functionality
 
-- Defects
+Defects
 - As a Site User I can log defects so that problems with building facilities and structure can be tracked and mitigated/repaired easier
   - Acceptance Criteria:
     - AC1 A defect can be logged as a specific entry in a database
     - AC2 The entry contains relevant information such as location, category(plumbing/electrical etc), date reported
     - AC3 The defect can be viewed by other site users
+  - Tasks:
+    - Create a model for defects
+    - Ensure the appropriate type for each field
+    - Create a defect detail view and template for viewing the information contained in the defect model
+    - Update the unit test scripts
+    - Test the functionality
 
-- Log problems
+Log problems
 - As a Site User I can fill out a form so that I can add new defect information to the database
   - Acceptance Criteria
     - AC1 If the user is logged in they can access the log defect form
     - AC2 The completed form adds data to the defect model
     - AC3 Successful form entries are confirmed
+  - Tasks:
+    - Create a form for the defect model
+    - Ensure this is protected behind a user authorised check in templates
+    - Ensure the completed form adds data to the model
+    - Update the unit test scripts
+    - Test the functionality
 
 Account approval
-As an Administrator I can limit accounts so that only approved users can report defects or post updates
+- As an Administrator I can limit accounts so that only approved users can report defects or post updates
+  - Acceptance Criteria:
+    - AC1 Account controls are only visible to administrator
+    - AC2 User accounts must be approved before they can see any site content
+    - AC3 Administrator can approve accounts and grant privileges
+  - Tasks:
+    - Add a link to the allAuth admin page
+    - Ensure only adminstrators can use the link
+    - Add a group with premissions to view content
+    - Protect content behind permission checks in templates
 
-Acceptance Criteria:
-AC1 Account controls are only visible to administrator
-AC2 User accounts must be approved before they can see any site content
-AC3 Administrator can approve accounts and grant privileges
+Category customization
+- As an administrator I can edit problem categories so that I can ensure the site can continue to be relevant in the future
+  - Acceptance Criteria:
+    - AC1 category model used for selecting category in problem model
+    - AC2 CRUD functionality for this model available to admin
+  - Tasks:
+    - Add a category model
+    - Add a form for adding new data to the category model
+    - protect this form behind permission and authorisation checks in templates
+
+Defect updates
+- As a Site User I can post updates on each defect so that any change in condition or resolution can be seen by other site users
+  - Acceptance Criteria:
+    - AC1 Updates can contain a date, description, an image and an option to resolve the defect
+    - AC2 Updates are stored in a separate table but posting an update can change data in the defect table
+  - Tasks:
+    - Add update model
+    - Ensure the appropriate type for each field
+    - Save changes to status in the defect model in the update view
+    - Add iterated list of updates on the defect detail page
+
+Update form
+- As a site user I can enter data in a form so that I can post updates to defects
+  - Acceptance Criteria:
+    - AC1 The form is visible on the defect page
+    - AC2 Data validation prevents incorrect data from being entered
+    - AC3 the data is added to the update table
+  - Tasks:
+    - Add a form for adding new updates on defect detail view and template
+    - Update the unit test scripts
+    - Test the functionality
+
+Defect summary list
+- As a Site User I can see a list of all defects so that I can navigate to each defect page
+  - Acceptance Criteria:
+    - AC1 A list of all defects is displayed
+    - AC2 The defect page is opened when clicking on the defect
+  - Tasks:
+    - Creade a defect list view with an iterated list of all defects
+    - Add a link to each defect detail in each iteration
+
+Defect list sort and filter
+- As a Site User I can sort and filter the list of defects that appear so that I can focus on the ones I need to
+  - Acceptance Criteria:
+    - AC1 The list can be sorted in order of type, date created, last update, etc
+    - AC2 The list can be filtered to exclude different categories, open or resolved, only within a date range, etc
+  - Tasks:
+    - Add filter inputs to the defect list template
+    - Get the filter data as part of a GET request in the view
+    - Apply logic to queryset
+    - Update the unit test scripts
+    - Test the functionality
+
+Defect list pagination
+- As a user I can separate long lists into pages so that page load times are decreased and the information is not overwhelming
+  - Acceptance Criteria:
+    - AC1 The defect list is seperated across pages
+    - AC2 The user can navigate between these pages
+    - AC3 The user can specify the number of items per page
+  - Tasks:
+    - Use pagination on defect list
+    - Update Urls to accomodate pagination
+    - Add links at the bottom of the list
+
+Edit or delete updates
+- As a Admin I can edit or delete updates so that duplicates or entries logged in error can be removed
+  - Acceptance Criteria:
+    - AC1 When logged in as an admin, an option to edit or delete appears on the defect detail page
+    - AC2 Selecting edit opens up a prepopulated form
+    - AC3 A modal asking the user to confirm appears when selecting delete
+  - Tasks:
+    - Add edit and delete buttons for each iterated update on defect detail template
+    - Add javascript to pre fill the update form for editing and change the form action
+    - Add an update view to catch the new POST request with the updated data
+    - Add javascript to trigger delete view
+    - Add delete view to remove entry from update model
+    - Add a confirmation modal before actually deleting
+
+Dashboard
+- As a Site User I can see a dashboard when I log in so that only approved users can see site content
+  - Acceptance Criteria:
+    - AC1 If the user is logged in a report of recent defects is shown
+    - AC2 The defect pages are accessible through the report
+    - AC3 If the user is not logged in, they are redirected to the login page
+  - Tasks:
+    - Add a dashboard view and template to render the last 5 defects and updates in iterated lists
+    - Add links to defect detail pages in lists
+    - Ensure that only authorized users with the right permissions can see the lists
+    - Set Urls so that the dashboard is shown by default
+
+Defect images
+- As a Site User I can upload an image for each defect or update so that other users can identify and track defects more accurately
+  - Acceptance Criteria:
+    - AC1 An image can be uploaded through the report defect form
+    - AC2 The image is stored on an external storage service
+    - AC3 The image is shown on the defect page
+  - Tasks:
+    - Connect to cloudinary
+    - Add cloudinary file fields to defect and update forms
+    - Add an image_url field to defect and update models
+    - Use CSS to show a cropped thumbnail in defect detail template
+    - 
 
 ## Technologies
 
@@ -229,6 +352,8 @@ AC3 Administrator can approve accounts and grant privileges
 - JavaScript was used for the edit and delete buttons.
 - Python was used as the main language in which this project was coded.
 - [Django](https://www.djangoproject.com/) was the framework used to build this website.
+- [ElephantSQL](https://customer.elephantsql.com/) was used to host the database
+- [Cloudinary](https://cloudinary.com/) was used to store user uploaded images
 - [Bootstrap 4.6](https://getbootstrap.com/docs/4.6/) was used to create and style the front end of the website.
 - [Font Awesome](https://fontawesome.com/) icons have been used for category icons, column headers and user icons.
 - [Google Fonts](https://fonts.google.com/) has been used to import the Poppins font.

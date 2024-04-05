@@ -1,7 +1,0 @@
-{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}text-danger{% endif %}
-{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger{% endif %}
-{% if user.is_authenticated and perms.defect.add_defect %}badge-success{% endif %}
-
-{% if user.is_authenticated and perms.defect.add_update %}badge-info{% endif %}
-
-{% if user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}
