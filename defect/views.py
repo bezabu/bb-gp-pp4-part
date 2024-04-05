@@ -325,15 +325,3 @@ def custom_404(request, exception):
 def custom_500(request):
     return render(request, '500.html', status=500)
 
-def user_list(request):
-    """
-    """
-    users = User.objects.all()
-
-    return render(
-        request,
-        'defect/user_list.html',
-        {
-            'users': users,
-        }
-    )
