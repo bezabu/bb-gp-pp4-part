@@ -97,6 +97,8 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 ### Automated Testing
 
+- All 20 automated tests passed
+
 ### Validator Testing
 
 - All pages, including logged in content pass through the W3C Markup Validation Service with no errors
@@ -111,7 +113,9 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
   - 1 contrast error was given for the gin in button. I fixed this by changing the shade of blue from the bootstrap default to a slightly darker shade of blue.
 
-- 
+- All Python code passes through the CI Python Linter with no errors
+
+- The website generates a score of 99 on the homepage whether logged in or out.
 
 ### Unfixed Bugs
 

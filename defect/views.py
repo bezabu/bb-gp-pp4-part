@@ -95,8 +95,8 @@ def defect_list(request, page=1):
 
 def dashboard(request):
     """
-    Returns the last 5 instances of :model:`defect.Defect` and the last 5 instances
-    of :model:`defect.Update`.
+    Returns the last 5 instances of :model:`defect.Defect` and the last 5
+    instances of :model:`defect.Update`.
 
     **Context**
     ``defects``
@@ -136,7 +136,7 @@ def defect_detail(request, defect_id):
         The last instance of :model:`defect.Update` related to the defect.
 
     **Template**
-    
+
     :template:`defect/defect_detail.html`
     """
     defect = get_object_or_404(Defect.objects.all(), defect_id=defect_id)
@@ -219,7 +219,7 @@ def update_delete(request, defect_id, update_id):
         All instances of :model:`defect.Update` related to the defect.
 
     **Template**
-    
+
     """
     defect = get_object_or_404(Defect, defect_id=defect_id)
     update = get_object_or_404(Update, pk=update_id)
@@ -244,10 +244,10 @@ def log_defect(request):
         All instances of :model:`defect.Category`.
     ``defect_form``
         An instance of :form:`defect.DefectForm`.
-    
+
     **Template**
 
-    :template:`defect/log_defect.html`    
+    :template:`defect/log_defect.html`
     """
     categories = Category.objects.all()
 
@@ -294,7 +294,7 @@ def category_list(request):
     ``category_form``
         An instance of :forms:`defect.CategoryForm`.
     **Template**
-    
+
     :template:`defect/category_list.html`
     """
     categories = Category.objects.all()
@@ -319,9 +319,10 @@ def category_list(request):
         },
     )
 
+
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
+
 def custom_500(request):
     return render(request, '500.html', status=500)
-

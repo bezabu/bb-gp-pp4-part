@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Category, Defect, Update
 from django_summernote.admin import SummernoteModelAdmin
 
+
 @admin.register(Defect)
 class DefectAdmin(SummernoteModelAdmin):
     list_display = ('title', 'category', 'author', 'reported_on', 'status')

@@ -15,6 +15,7 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = ('name', 'description', 'fa_string', 'colour')
 
+
 class DefectForm(forms.ModelForm):
     """
     Form class for users to log new defects
@@ -25,6 +26,7 @@ class DefectForm(forms.ModelForm):
         """
         model = Defect
         fields = ('category', 'title', 'body', 'image_url')
+
 
 class UpdateForm(forms.ModelForm):
     """

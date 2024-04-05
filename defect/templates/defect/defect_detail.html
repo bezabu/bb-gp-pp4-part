@@ -34,8 +34,8 @@
                 {% if "placeholder" in defect.image_url.url %}
                 <p>No images.</p>
                 {% else %}
-                <a href="{{ defect.image_url.url }}" target="_BLANK">
-                    <div class="col border rounded" style="width: 200px; height: 200px; background-image: url({{ defect.image_url.url }}); overflow: hidden; background-position:center; background-size: cover;"></div>
+                <a href="{{ defect.image_url.url }}" aria-label="Link to image for defect (opens in new tab)." target="_BLANK">
+                    <div class="col border rounded" style="width: 200px; height: 200px; background-image: url({{ defect.image_url.url }}); overflow: hidden; background-position:center; background-size: cover;" aria-label="image for {{ defect.title }}"></div>
                 </a>
                 {% endif %}
             </div>
@@ -70,7 +70,7 @@
                         {% if "placeholder" in update.image_url.url %}
                         <p>No images.</p>
                         {% else %}
-                        <a href="{{ update.image_url.url }}" target="_BLANK">
+                        <a href="{{ update.image_url.url }}" aria-label="Link to update {{ update.update_id }} image (opens in new tab)." target="_BLANK">
                             <div class="col border rounded mb-2" style="width: 200px; height: 200px; background-image: url({{ update.image_url.url }}); overflow: hidden; background-position:center; background-size: cover;"></div>
                         </a>  
                         {% endif %}
