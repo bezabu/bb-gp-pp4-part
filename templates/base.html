@@ -42,10 +42,10 @@
                         <span class="badge dropdown-toggle m-0 {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger
                         {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}badge-success
                         {% elif user.is_authenticated and perms.defect.add_update and not perms.defect.add_category %}badge-info
-                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}" aria-controls="menu" data-toggle="dropdown" aria-expanded="false">
+                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}"data-toggle="dropdown">
                         {{ user }}
                         </span>
-                        <div class="dropdown-menu text-center" role="menu">
+                        <div class="dropdown-menu text-center" >
                            <p role="menuitem">{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access</p>
                            <a class="dropdown-item" role="menuitem" href="{% url 'account_logout' %}">Sign out</a>
                         </div>
@@ -57,10 +57,10 @@
                   <div class="col text-center px-0">
                      <i class="fa-solid fa-user" aria-label="User account indicator"></i>
                      <div class="dropdown dropleft text-center">
-                        <span class="badge badge-dark dropdown-toggle m-0" aria-controls="menu" data-toggle="dropdown" aria-expanded="false">
+                        <span class="badge badge-dark dropdown-toggle m-0" data-toggle="dropdown">
                         Not logged in
                         </span>
-                        <div class="dropdown-menu text-center" role="menu">
+                        <div class="dropdown-menu text-center">
                            <a class="dropdown-item" href="{% url 'account_login' %}" role="menuitem">Sign in</a>
                            <a class="dropdown-item" href="{% url 'account_signup' %}" role="menuitem">Sign up</a>
                         </div>
@@ -85,10 +85,10 @@
                         <span id="acc_ind_2" class="badge dropdown-toggle m-0 {% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}badge-danger
                         {% elif user.is_authenticated and perms.defect.add_defect and not perms.defect.add_update %}badge-success
                         {% elif user.is_authenticated and perms.defect.add_update and not perms.defect.add_category %}badge-info
-                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}" aria-haspopup="true" aria-controls="menu" data-toggle="dropdown" aria-expanded="false" aria-label="account options">
+                        {% elif user.is_authenticated and perms.defect.add_category %}badge-warning{% endif %}" data-toggle="dropdown">
                         {{ user }}
                         </span>
-                        <div class="dropdown-menu text-center" role="menu" aria-labelledby="acc_ind_2">
+                        <div class="dropdown-menu text-center">
                            <p role="menuitem">{{ user.groups.all.0 }}{% if user.is_authenticated and not perms.defect.view_defect and not perms.defect.view_update %}No{% endif %} Access</p>
                            <a class="dropdown-item" href="{% url 'account_logout' %}" role="menuitem">Sign out</a>
                         </div>

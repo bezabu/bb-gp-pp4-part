@@ -37,8 +37,8 @@ h2 > a:hover {
 li {
     list-style-type: none;
 }
-.btn-blue {
-    color: #ffffff;
+.nav-col {
+    color: #222222;
 }
 /*
 // Extra small devices (portrait phones, less than 576px)
