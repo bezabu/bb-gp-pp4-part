@@ -321,8 +321,22 @@ def category_list(request):
 
 
 def custom_404(request, exception):
+    """
+    Renders a custom 404 page
+
+    **Template**
+
+    :template:`404.html`
+    """
     return render(request, '404.html', status=404)
 
 
 def custom_500(request):
+    """
+    Renders a custom 500 page
+
+    **Template**
+
+    :template:`500.html`
+    """
     return render(request, '500.html', status=500)
