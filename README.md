@@ -1,14 +1,16 @@
 # Problem Archive & Resolution Tool
 
-Problem Archive & Resolution Tool (PART) is a website designed to make keeping track of maintenence tasks in a hospitality setting. Users can log defects, sort them into categories of their own choosing, provide new information (updates) when there are developements, and once the problem is resolved it is archived.
+Problem Archive & Resolution Tool (PART) is a website designed to make keeping track of maintenance tasks in a hospitality setting easier. Users can log defects, sort them into categories of their own choosing, provide new information (updates) when there are developments, and once the problem is resolved it is archived.
 
 The website can be accessed [here](https://bb-gp-pp4-part-07cc42d9a56e.herokuapp.com/)
 
 ![Mockup of the PART website on several different sized devices](static/images/mockup01.webp)
 
-It has been designed specifically with old buildings or facilities in mind, or where there may be a high turnover of staff, or where different shifts or roles within the business may not have existing ways of communicating the necesary easy fixes or workarounds that could save time and money. I have experienced all of these problems at the cinema where I work.
+It has been designed specifically with old buildings or facilities in mind, or where there may be a high turnover of staff, or where different shifts or roles within the business may not have existing ways of communicating the necessary easy fixes or workarounds that could save time and money. I have experienced all of these problems at the cinema where I work.
 
-The design is minimalist, emphasizing presentation and readability of information. Colour is used to convey information. The images are uploaded by the users. Links to defects and updates are black by default, while pagination navigation links are blue. Button links are coloured so that the main action will be coloured blue, while other options will be coloured grey, or red in the case of the delete button.
+The way it works is analogous to a social media site; defects are posts on a specific problem, updates are comments where users can share their experience and track their progress in fixing the problem. Categories are equivalent to subjects and are customisable.
+
+The design is minimalist, emphasising presentation and readability of information. Colour is used to convey information. The images are uploaded by the users. Links to defects and updates are black by default, while pagination navigation links are blue. Button links are coloured so that the main action will be coloured blue, while other options will be coloured grey, or red in the case of the delete button.
 
 
 ## Readme Contents
@@ -39,7 +41,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - Defect database
 
-  - There are three models in the defect database, two of wich relate to the auth.User model
+  - There are three models in the defect database, two of which relate to the auth.User model
 
   ![Entity Relationship Diagram of the Defect Database](static/images/erd_part.webp)
 
@@ -50,16 +52,20 @@ The design is minimalist, emphasizing presentation and readability of informatio
   ![The home page login prompt](static/images/log_in.webp)
 
   - Once the user signs up for an account, they must still be approved. Once approved by an admin, the user will have some permissions, depending on their group. The groups and permissions are:
+
     - Level 1 - the user can view categories, defects and updates, and can log new defects, but cannot add updates or categories. This level is intended for low level employees who may be more likely to find something that needs reporting, but do not have the training or authorisation to fix them. The navigation bar is visible for level 1 and up.
+
     - Level 2 - the user can do everything a level 1 user can, but they can also add updates. This level is intended for supervisors/management, who would need to communicate the progress made resolving any defects.
-    - Level 3 - the user can do everything level 1 & 2 users can, but they can also add categories, assign users to groups and edit defects, updates and categories. The users link is active in the navigation bar. This level is intended for the general manager or member of the management team responsible for maintenence.
+
+    - Level 3 - the user can do everything level 1 & 2 users can, but they can also add categories, assign users to groups and edit defects, updates and categories. The users link is active in the navigation bar. This level is intended for the general manager or member of the management team responsible for maintenance.
+
     - Superusers have all permissions.
 
 
 
 - Account indicator
 
-  - Situated at the top right corner of every page, the account indicator shows the username and access level, as well as options to sign in or out.
+  - Situated in the top right corner of every page, the account indicator shows the username and access level, as well as options to sign in or out.
 
   - When logged out, the account indicator appears dark grey with the text 'not logged in'. Clicking on the text opens a menu with links to sign in and sign up pages.
 
@@ -86,7 +92,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 - Navigation Bar
 
   - Includes links to all parts of the website, allowing users to easily navigate between them. It is only visible if a user is logged in and the users link is greyed out and not functional for all users apart from level 3 and superusers.
-  - On smaller devices the menu links are condensed into a dropdown menu, saving valuable screen space.
+  - On smaller devices the menu links are condensed into a drop-down menu, saving valuable screen space.
 
   ![A screenshot of the Navigation bar as it appears on smaller devices](static/images/navbar01.webp)
 
@@ -106,7 +112,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
   - The defects section includes a paginated list of all defects in the database. Similar to the dashboard, vital information like category, number of updates, title, date reported and author are shown.
 
-  - Search functionality wich is hidden by default can be revealed by clicking on "Toggle search options". This opens a list of filters the user can apply to the data shown on the page, as well as an option to sort by date reported. This is styled to appear differently on smaller screens, maintaining large enough buttons to reduce the risk of touching the incorrect one on a touchscreen.
+  - Search functionality which is hidden by default can be revealed by clicking on "Toggle search options". This opens a list of filters the user can apply to the data shown on the page, as well as an option to sort by date reported. This is styled to appear differently on smaller screens, maintaining large enough buttons to reduce the risk of touching the incorrect one on a touchscreen.
   - The search filters will stay applied until the page is navigated to again or until the reset button is clicked.
 
   ![A screenshot of the defect search filters and list](static/images/defect_list_search.webp)
@@ -122,7 +128,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
   - Below the list of updates is the update form. The update form is used to add new updates and edit existing ones when the edit button is clicked. When the user clicks the edit button, the inputs are filled with the existing data from the update, and the "submit" button changes to a "save" button. A message confirms a successful or unsuccessful edit.
 
-  ![A screenshot of the update form ater clicking the edit button on an update](static/images/editupdate.webp)
+  ![A screenshot of the update form after clicking the edit button on an update](static/images/editupdate.webp)
 
 - Delete modal
 
@@ -150,7 +156,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - custom 404 and 500 pages
 
-  - A custom 404 page has been made for the web site to enable the user to find their way back to the homepage if they become lost.
+  - A custom 404 page has been made for the web site to enable the user to find their way back to the homepage if they become lost. A 500 error page has also been made in case of server errors where the 404 is not suitable.
 
   ![A screenshot of the custom 404 page](static/images/404page.webp)
 
@@ -208,7 +214,7 @@ Defects
 - As a Site User I can log defects so that problems with building facilities and structure can be tracked and mitigated/repaired easier
   - Acceptance Criteria:
     - AC1 A defect can be logged as a specific entry in a database
-    - AC2 The entry contains relevant information such as location, category(plumbing/electrical etc), date reported
+    - AC2 The entry contains relevant information such as location, category (plumbing/electrical etc), date reported
     - AC3 The defect can be viewed by other site users
   - Tasks:
     - Create a model for defects
@@ -238,11 +244,11 @@ Account approval
     - AC3 Administrator can approve accounts and grant privileges
   - Tasks:
     - Add a link to the allAuth admin page
-    - Ensure only adminstrators can use the link
-    - Add a group with premissions to view content
+    - Ensure only administrators can use the link
+    - Add a group with permissions to view content
     - Protect content behind permission checks in templates
 
-Category customization
+Category customisation
 - As an administrator I can edit problem categories so that I can ensure the site can continue to be relevant in the future
   - Acceptance Criteria:
     - AC1 category model used for selecting category in problem model
@@ -280,7 +286,7 @@ Defect summary list
     - AC1 A list of all defects is displayed
     - AC2 The defect page is opened when clicking on the defect
   - Tasks:
-    - Creade a defect list view with an iterated list of all defects
+    - Create a defect list view with an iterated list of all defects
     - Add a link to each defect detail in each iteration
 
 Defect list sort and filter
@@ -296,27 +302,28 @@ Defect list sort and filter
     - Test the functionality
 
 Defect list pagination
+
 - As a user I can separate long lists into pages so that page load times are decreased and the information is not overwhelming
   - Acceptance Criteria:
-    - AC1 The defect list is seperated across pages
+    - AC1 The defect list is separated across pages
     - AC2 The user can navigate between these pages
     - AC3 The user can specify the number of items per page
   - Tasks:
     - Use pagination on defect list
-    - Update Urls to accomodate pagination
+    - Update Urls to accommodate pagination
     - Add links at the bottom of the list
 
 Edit or delete updates
-- As a Admin I can edit or delete updates so that duplicates or entries logged in error can be removed
+- As an Admin user I can edit or delete updates so that duplicates or entries logged in error can be removed
   - Acceptance Criteria:
     - AC1 When logged in as an admin, an option to edit or delete appears on the defect detail page
-    - AC2 Selecting edit opens up a prepopulated form
+    - AC2 Selecting edit opens up a pre populated form
     - AC3 A modal asking the user to confirm appears when selecting delete
   - Tasks:
     - Add edit and delete buttons for each iterated update on defect detail template
-    - Add javascript to pre fill the update form for editing and change the form action
+    - Add Javascript to pre fill the update form for editing and change the form action
     - Add an update view to catch the new POST request with the updated data
-    - Add javascript to trigger delete view
+    - Add Javascript to trigger delete view
     - Add delete view to remove entry from update model
     - Add a confirmation modal before actually deleting
 
@@ -329,7 +336,7 @@ Dashboard
   - Tasks:
     - Add a dashboard view and template to render the last 5 defects and updates in iterated lists
     - Add links to defect detail pages in lists
-    - Ensure that only authorized users with the right permissions can see the lists
+    - Ensure that only authorised users with the right permissions can see the lists
     - Set Urls so that the dashboard is shown by default
 
 Defect images
@@ -343,7 +350,6 @@ Defect images
     - Add cloudinary file fields to defect and update forms
     - Add an image_url field to defect and update models
     - Use CSS to show a cropped thumbnail in defect detail template
-    - 
 
 ## Technologies
 
@@ -372,11 +378,11 @@ Defect images
 - Git was used for version control, pushing contents to GitHub.
 - [W3C Markup Validation Service](https://validator.w3.org/) was used to check HTML.
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) was used to check CSS.
-- [JSHint](https://jshint.com/) was used to test the javascript code.
+- [JSHint](https://jshint.com/) was used to test the Javascript code.
 - [CI Python Linter](https://pep8ci.herokuapp.com/) was used to test Python code.
 - [Wave Web Accessibility Evaluation Tool](https://wave.webaim.org/) was used to test the website's accessibility.
 - Lighthouse was used to run an audit of the website.
-- [Am I Responsive](https://ui.dev/amiresponsive) was used to create the mockup.
+- [Am I Responsive](https://ui.dev/amiresponsive) was used to create the mock-up.
 - [Grammar Check](https://www.grammarcheck.net/) was used to check for typos in Readme.md.
 
 
@@ -506,7 +512,7 @@ Defect images
     - Log in as a level 2 or higher user
     - Navigate to a defect detail page with at least 1 update
     - Click on the edit button
-    - Observe the add upate form
+    - Observe the add update form
     - Make a change to the text
     - Click save
   - Result:
@@ -575,7 +581,7 @@ Automated tests can be found in [test_forms.py](https://github.com/bezabu/bb-gp-
 
   - 1 error was given for aria labels. I fixed this by moving the role="menu" attribute to the parent div of the two menu items.
 
-  - 1 contrast error was given for the gin in button. I fixed this by changing the shade of blue from the bootstrap default to a slightly darker shade of blue.
+  - 1 contrast error was given for the sign in button. I fixed this by changing the shade of blue from the bootstrap default to a slightly darker shade of blue.
 
   ![A screenshot of the WAVE tool report](static/images/wave.webp)
 
@@ -624,5 +630,3 @@ Images used in the updates were taken by me, Ben butler
 ### Code
 
 [This tutorial](https://www.makeuseof.com/create-custom-404-error-page-django/) was followed to set up the custom 404 & 500 pages.
-
-### Acknowledgements
