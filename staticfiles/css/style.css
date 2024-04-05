@@ -23,14 +23,10 @@ h1 > a:hover {
 h2 > a:hover {
     color: black;
 }
-
-
 .pagination-nav {
     margin: auto;
 }
-
 .bb-footer {
-
     height: 100px;
     background-color: grey;
 }
@@ -44,13 +40,6 @@ li {
     background-color: #005DE7;
     border-color: #005DE7;
 }
-/*
-// Extra small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
-*/
-
-
-
 /* Medium devices (tablets, 768px and up)*/
 @media (max-width: 768px) {
     p {
@@ -78,9 +67,3 @@ li {
     }
 
 }
-/* Large devices (desktops, 992px and up)
-@media (min-width: 992px) { ... }
-
-/* Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... }
-*/
