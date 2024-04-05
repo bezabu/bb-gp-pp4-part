@@ -99,9 +99,13 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 ### Validator Testing
 
-- All pages, including logged in content pass through the W3 Markup Validation Service
+- All pages, including logged in content pass through the W3C Markup Validation Service with no errors
 
+- CSS passes through the W3C CSS Validation Service with no errors
 
+- Javascript passes through JSHint with no errors
+
+- When using the WebAIM Web Accessibility Evaluation Tool, 1 error was given for aria labels. I fixed this by moving the role="menu" attribute to the parent div of the two menu items.
 
 ### Unfixed Bugs
 
