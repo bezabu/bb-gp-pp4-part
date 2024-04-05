@@ -99,6 +99,10 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 ### Validator Testing
 
+- All pages, including logged in content pass through the W3 Markup Validation Service
+
+
+
 ### Unfixed Bugs
 
 ## Deployment
