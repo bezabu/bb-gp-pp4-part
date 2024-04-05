@@ -352,14 +352,20 @@ Defect images
 - JavaScript was used for the edit and delete buttons.
 - Python was used as the main language in which this project was coded.
 - [Django](https://www.djangoproject.com/) was the framework used to build this website.
-- [ElephantSQL](https://customer.elephantsql.com/) was used to host the database
-- [Cloudinary](https://cloudinary.com/) was used to store user uploaded images
+- [ElephantSQL](https://customer.elephantsql.com/) was used to host the database.
+- [Cloudinary](https://cloudinary.com/) was used to store user uploaded images.
 - [Bootstrap 4.6](https://getbootstrap.com/docs/4.6/) was used to create and style the front end of the website.
+- [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) was used to control rendering of forms.
+- [Django AllAuth](https://docs.allauth.org/en/latest/) was used to provide user account registration.
+- [gunicorn](https://gunicorn.org/) was used for the web server.
+- [summernote](https://summernote.org/) was used for the admin panel text fields.
+- [psycopg2](https://pypi.org/project/psycopg2/) was used to adapt SQL for python.
+- [whitenoise](https://whitenoise.readthedocs.io/en/stable/django.html) was used to enable serving of static files.
 - [Font Awesome](https://fontawesome.com/) icons have been used for category icons, column headers and user icons.
 - [Google Fonts](https://fonts.google.com/) has been used to import the Poppins font.
 - [Paint.NET](https://www.getpaint.net/) was used to edit the hammer image before using it with Favicon.
 - [Real Favicon Generator](https://realfavicongenerator.net/) was used to create the favicon for the website.
-- [GitPod](https://gitpod.io/) was used as IDE
+- [GitPod](https://gitpod.io/) was used as IDE.
 - [Google Chrome Developer Tools](https://developer.chrome.com/docs/devtools/) were used to inspect elements of the website and test different styles.
 - [GitHub](https://github.com/) has been used to store the code, images, and other contents of the website.
 - [Heroku](https://dashboard.heroku.com/) was used to deploy the website to the web.
