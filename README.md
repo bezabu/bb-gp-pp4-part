@@ -193,24 +193,34 @@ The [Github Projects Kanban board](https://github.com/users/bezabu/projects/5/vi
 
 The user stories are as follows:
 
+- Account registration
 - As a Site User I can register an account so that I can log in and use the site functionality
   - Acceptance Criteria
     - AC1 Given an email a user can register an account.
     - AC2 Then the user can log in.
     - AC3 The site content is hidden unless logged in
 
+- Defects
 - As a Site User I can log defects so that problems with building facilities and structure can be tracked and mitigated/repaired easier
   - Acceptance Criteria:
     - AC1 A defect can be logged as a specific entry in a database
     - AC2 The entry contains relevant information such as location, category(plumbing/electrical etc), date reported
     - AC3 The defect can be viewed by other site users
 
+- Log problems
 - As a Site User I can fill out a form so that I can add new defect information to the database
   - Acceptance Criteria
     - AC1 If the user is logged in they can access the log defect form
     - AC2 The completed form adds data to the defect model
     - AC3 Successful form entries are confirmed
 
+Account approval
+As an Administrator I can limit accounts so that only approved users can report defects or post updates
+
+Acceptance Criteria:
+AC1 Account controls are only visible to administrator
+AC2 User accounts must be approved before they can see any site content
+AC3 Administrator can approve accounts and grant privileges
 
 ## Technologies
 
