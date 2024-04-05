@@ -1,7 +1,7 @@
-from .models import Update, Defect, Category
 from cloudinary.forms import CloudinaryFileField
 from cloudinary.models import CloudinaryField
 from django import forms
+from .models import Update, Defect, Category
 
 
 class CategoryForm(forms.ModelForm):

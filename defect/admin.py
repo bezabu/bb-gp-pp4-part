@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Category, Defect, Update
 from django_summernote.admin import SummernoteModelAdmin
+from .models import Category, Defect, Update
 
 
 @admin.register(Defect)
