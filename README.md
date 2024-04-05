@@ -98,7 +98,7 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - Log defect page
 
-  - The Log defect page enables the user to add instances of the defect model. The form is kept brief to minimise the time spent filling in the form, as the user will likely be doing so from a smart phone, in or near unpleasant conditions (in the dark, in a flood, etc)
+  - The Log defect page enables the user to add instances of the defect model. The form is kept brief to minimise the time spent filling in the form, as the user will likely be doing so from a smart phone, in or near unpleasant conditions (in the dark, in a flood, etc).
 
   ![A screenshot of the log defect form](static/images/log_defect.webp)
 
@@ -114,55 +114,61 @@ The design is minimalist, emphasizing presentation and readability of informatio
 
 - Defect detail section
 
-  - The Defect detail section displays the data for that particular entry, including any images.
+  - The Defect detail section displays the data for that particular entry, including any images. At the top of the page, the original defect information is displayed, including any images. If there are no images, the text "no images" appears instead. Below, under the heading Updates there is a button link to the latest update and list of all updates, in order. The updates contain all information, including images.
 
   ![A screenshot of the defect detail page, showing updates](static/images/def_detail01.webp)
 
-- update form
+- Update form
+
+  - Below the list of updates is the update form. The update form is used to add new updates and edit existing ones when the edit button is clicked. When the user clicks the edit button, the inputs are filled with the existing data from the update, and the "submit" button changes to a "save" button. A message confirms a successful or unsuccessful edit.
 
   ![A screenshot of the update form ater clicking the edit button on an update](static/images/editupdate.webp)
 
-- delete modal
+- Delete modal
+
+  - When the user clicks on the delete button, a confirmation modal will appear, preventing accidental deletion. Clicking on the close button dismisses the modal, clicking on the delete button deletes the update. A message confirms a successful or unsuccessful delete.
 
   ![A screenshot of the delete modal](static/images/delete_modal.webp)
 
 - Categories section
 
-  - category list
+  - The categories list is where users can view the categories available that have been set by the admin. Each entry contains a longer description so that the user knows what circumstances they are for.
 
   ![A screenshot of the category list](static/images/catagory_list.webp)
 
 - Sign in page
 
+  - The sign in page allows the user to log in to an existing account in order to log defects, updates, categories etc. It also provides an option for the user to sign up for an account.
+
   ![A screenshot of the sign in page](static/images/signin.webp)
 
 - Sign out page
 
+  - The sign out page allows the user to confirm that they want to sign out, preventing users from signing out accidentally.
+
   ![A screenshot of the sign out page](static/images/signout.webp)
 
-- Sign up page
-
-  ![A screenshot of the up page](static/images/signup.webp)
-
 - custom 404 and 500 pages
+
+  - A custom 404 page has been made for the web site to enable the user to find their way back to the homepage if they become lost.
 
   ![A screenshot of the custom 404 page](static/images/404page.webp)
 
 - Favicon
 
+  - A custom favicon has been created to make the page stand out amongst other tabs.
+
   ![A screenshot of the favicon](static/images/favicon1.webp)
 
 ### Features to implement
 
-- Light/dark mode
+- A light/dark mode to prevent overwhelming screen glare when using the website in low light conditions.
 
-- non admin user CRUD
+- Automatically selected key words or tags from defect and update body text which can be used to suggest similar solutions.
 
-- keywords/tags
+- More extensive filtering & sorting, particularly the option to filter within a date range.
 
-- More extensive filtering & sorting
-
-- different cascade
+- A way of preserving defects if users or categories are deleted or deactivated.
 
 ## User Experience Design
 
